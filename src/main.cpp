@@ -10,6 +10,7 @@ int M2 = 7;   // Motor1 Dir
 
 void setup() {
   // put your setup code here, to run once:
+  motorOnWithSpeed();
 }
 
 void loop() {
