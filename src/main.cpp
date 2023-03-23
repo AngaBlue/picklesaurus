@@ -1,4 +1,5 @@
 #include <Arduino.h>
+#include <main.h>
 #include <pins.h>
 
 void setup()
