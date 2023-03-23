@@ -1,25 +1,29 @@
 #include <Arduino.h>
 #include <pins.h>
 
-//Arduino PWM Speed Control：
-int E1 = 5;  // Motor2 Speed
-int M1 = 4;  // Motor2 Dir
-int E2 = 6;   // Motor1 Speed                   
-int M2 = 7;   // Motor1 Dir 
+void setup()
+{
+  // Initialize pin modes
+  pinMode(MOTOR_DIR_1, OUTPUT);
+  pinMode(MOTOR_SPEED_1, OUTPUT);
+  pinMode(MOTOR_DIR_2, OUTPUT);
+  pinMode(MOTOR_SPEED_2, OUTPUT);
 
-
-void setup() {
-  // put your setup code here, to run once:
   motorOnWithSpeed();
 }
 
-void loop() {
+void loop()
+{
   // put your main code here, to run repeatedly:
 }
 
-void motorOnWithSpeed(){
-    digitalWrite(M1,LOW);   
-    digitalWrite(M2, LOW);       
-    analogWrite(E1,80);
-    analogWrite(E2,80);
+void motorOnWithSpeed()
+{
+  // Set the motor direction to forward
+  digitalWrite(MOTOR_DIR_1, LOW);
+  digitalWrite(MOTOR_DIR_2, LOW);
+
+  // Set the motor speed using PWM
+  analogWrite(MOTOR_SPEED_1, 80);
+  analogWrite(MOTOR_SPEED_2, 80);
 }
