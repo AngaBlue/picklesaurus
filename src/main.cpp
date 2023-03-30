@@ -1,12 +1,17 @@
 #include <Arduino.h>
-#include <Servo.h>
+#include <Claw.h>
 #include "main.h"
-#include "pins.h"
+#include "config.h"
 
-static Servo claw;
+static Claw claw = Claw(CLAW_SERVO, CLAW_OPEN, CLAW_CLOSED);
 
 void setup()
 {
+  // Logging
+  #ifdef LOGGING
+  Serial.begin(115200);
+  #endif
+
   // Initialize pin modes
   pinMode(MOTOR_DIR_1, OUTPUT);
   pinMode(MOTOR_SPEED_1, OUTPUT);
@@ -14,18 +19,14 @@ void setup()
   pinMode(MOTOR_SPEED_2, OUTPUT);
   pinMode(PUSH_BUTTON, INPUT);
   pinMode(LED_BUILTIN, OUTPUT);
-
-  claw.attach(CLAW_SERVO);
-  claw.write(0);
-
-  motorOnWithSpeed();
 }
 
 void loop()
 {
   static uint8_t isStarted = LOW;
 
-  static uint32_t last_time = 0;
+  // Timing
+  static uint32_t servoTime = 0;
   uint32_t ms = millis();
 
   // Write indicator LED
@@ -37,38 +38,22 @@ void loop()
   }
   else
   {
-    // Main active loop
-    static uint8_t position_counter = 0;
+    /**
+     * Main active loop
+     */
 
-    if ((ms - last_time) > 20)
+    // Open/close claw every second
+    if ((ms - servoTime) > 1000)
     {
-      last_time = ms;
+      #ifdef LOGGING
+      Serial.println("Changing");
+      #endif
+      servoTime = ms;
 
-      uint8_t pos;
-
-      position_counter++;
-      if (position_counter < 180) {
-        pos = position_counter;
-      } else {
-        pos = 359 - position_counter;
-
-        if (position_counter >= 359) {
-          position_counter = 0;
-        }
-      }
-
-      claw.write(pos);
+      if (claw.getIsOpen())
+        claw.close();
+      else
+        claw.open();
     }
   }
-}
-
-void motorOnWithSpeed()
-{
-  // Set the motor direction to forward
-  digitalWrite(MOTOR_DIR_1, LOW);
-  digitalWrite(MOTOR_DIR_2, LOW);
-
-  // Set the motor speed using PWM
-  analogWrite(MOTOR_SPEED_1, 80);
-  analogWrite(MOTOR_SPEED_2, 80);
 }
