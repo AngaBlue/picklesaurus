@@ -1,9 +1,9 @@
+#include "config.h"
 #include <Arduino.h>
 #include <Claw.h>
 #include "main.h"
-#include "config.h"
 
-static Claw claw = Claw(CLAW_SERVO, CLAW_OPEN, CLAW_CLOSED);
+static Claw claw = Claw(CLAW_OPEN, CLAW_CLOSED);
 
 void setup()
 {
@@ -19,6 +19,8 @@ void setup()
   pinMode(MOTOR_SPEED_2, OUTPUT);
   pinMode(PUSH_BUTTON, INPUT);
   pinMode(LED_BUILTIN, OUTPUT);
+
+  claw.attach(CLAW_SERVO);
 }
 
 void loop()
@@ -45,9 +47,6 @@ void loop()
     // Open/close claw every second
     if ((ms - servoTime) > 1000)
     {
-      #ifdef LOGGING
-      Serial.println("Changing");
-      #endif
       servoTime = ms;
 
       if (claw.getIsOpen())

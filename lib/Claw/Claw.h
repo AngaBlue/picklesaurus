@@ -16,11 +16,17 @@ public:
     /**
      * @brief Constructs a new Claw object.
      *
-     * @param pin The pin the servo motor is bound to.
      * @param opened The value from 0 - 179 which represents the opened state of the claw.
      * @param closed The value from 0 - 179 which represents the closed state of the claw.
      */
-    Claw(uint8_t pin, uint8_t opened, uint8_t closed);
+    Claw(uint8_t opened, uint8_t closed);
+
+    /**
+     * @brief Attaches the claw to a pin.
+     * 
+     * @param 
+     */
+    void attach(uint8_t pin);
 
     /**
      * @brief Opens the claw.
