@@ -2,5 +2,5 @@
 
 #define LOGGING
 
-#define CLAW_OPEN 120
-#define CLAW_CLOSED 30
+#define CLAW_OPEN 180
+#define CLAW_CLOSED 90

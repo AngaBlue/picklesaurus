@@ -44,8 +44,8 @@ void loop()
      * Main active loop
      */
 
-    // Open/close claw every second
-    if ((ms - servoTime) > 1000)
+    // Open/close claw every 3 seconds
+    if ((ms - servoTime) > 3000)
     {
       servoTime = ms;
 
