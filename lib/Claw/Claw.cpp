@@ -1,16 +1,8 @@
-#include "Claw.h"
+#include "Claw.hpp"
 #include <Arduino.h>
 #include <Servo.h>
 
-Claw::Claw(uint8_t opened, uint8_t closed)
-{
-    Servo();
-
-    this->opened = opened;
-    this->closed = closed;
-}
-
-void Claw::attach(uint8_t pin)
+void Claw::attach(uint8_t pin, uint8_t opened, uint8_t closed)
 {
     Servo::attach(pin);
     this->open();

@@ -1,26 +1,26 @@
 #include "config.h"
 #include <Arduino.h>
-#include <Claw.h>
-#include "main.h"
+#include <Claw.hpp>
+#include <Wheels.hpp>
+#include "main.hpp"
 
-static Claw claw = Claw(CLAW_OPEN, CLAW_CLOSED);
+static Wheels wheels;
+static Claw claw;
 
 void setup()
 {
+#ifdef LOGGING
   // Logging
-  #ifdef LOGGING
   Serial.begin(115200);
-  #endif
+#endif
 
-  // Initialize pin modes
-  pinMode(MOTOR_DIR_1, OUTPUT);
-  pinMode(MOTOR_SPEED_1, OUTPUT);
-  pinMode(MOTOR_DIR_2, OUTPUT);
-  pinMode(MOTOR_SPEED_2, OUTPUT);
+  // Initialise pin modes
   pinMode(PUSH_BUTTON, INPUT);
   pinMode(LED_BUILTIN, OUTPUT);
 
-  claw.attach(CLAW_SERVO);
+  // Initialise components
+  claw.attach(CLAW_SERVO, CLAW_OPEN, CLAW_CLOSED);
+  wheels.attach();
 }
 
 void loop()
@@ -29,6 +29,7 @@ void loop()
 
   // Timing
   static uint32_t servoTime = 0;
+  static uint32_t wheelTime = 0;
   uint32_t ms = millis();
 
   // Write indicator LED
@@ -53,6 +54,19 @@ void loop()
         claw.close();
       else
         claw.open();
+    }
+
+    // Run wheels for 2 seconds then stop
+    if (!wheelTime)
+    {
+      wheelTime = ms;
+    }
+    else
+    {
+      if ((ms - wheelTime) > 2000)
+        wheels.stop();
+      else
+        wheels.forwards();
     }
   }
 }
