@@ -46,14 +46,20 @@ void loop()
      */
 
     // Open/close claw every 3 seconds
-    if ((ms - servoTime) > 3000)
+    if ((ms - servoTime) > 1000)
     {
       servoTime = ms;
 
       if (claw.getIsOpen())
+      {
+        Serial.println("Claw close");
         claw.close();
+      }
       else
+      {
+        Serial.println("Claw open");
         claw.open();
+      }
     }
 
     // Run wheels for 2 seconds then stop
