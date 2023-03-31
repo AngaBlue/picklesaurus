@@ -5,6 +5,10 @@
 void Claw::attach(uint8_t pin, uint8_t opened, uint8_t closed)
 {
     Servo::attach(pin);
+
+    this->opened = opened;
+    this->closed = closed;
+
     this->open();
 }
 
