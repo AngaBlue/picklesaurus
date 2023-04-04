@@ -2,10 +2,12 @@
 #include <Arduino.h>
 #include <Claw.hpp>
 #include <Wheels.hpp>
+#include <Servo.h>
 #include "main.hpp"
 
 static Wheels wheels;
 static Claw claw;
+static Servo servo;
 
 void setup()
 {
@@ -19,7 +21,8 @@ void setup()
   pinMode(LED_BUILTIN, OUTPUT);
 
   // Initialise components
-  claw.attach(CLAW_SERVO, CLAW_OPEN, CLAW_CLOSED);
+  // claw.attach(CLAW_SERVO, CLAW_OPENED, CLAW_CLOSED);
+  servo.attach(12);
   wheels.attach();
 }
 
@@ -28,12 +31,13 @@ void loop()
   static uint8_t isStarted = LOW;
 
   // Timing
+  uint32_t ms = millis();
   static uint32_t servoTime = 0;
   static uint32_t wheelTime = 0;
-  uint32_t ms = millis();
+  static boolean isOpen = false;
 
   // Write indicator LED
-  digitalWrite(LED_BUILTIN, isStarted);
+  // digitalWrite(LED_BUILTIN, isStarted);
 
   if (!isStarted)
   {
@@ -44,35 +48,25 @@ void loop()
     /**
      * Main active loop
      */
+    // Run wheels for 2 seconds then stop
+    if (!wheelTime)
+      wheelTime = ms;
 
-    // Open/close claw every 3 seconds
+    if ((ms - wheelTime) < 2000)
+      wheels.forwards();
+    else if ((ms - wheelTime) < 2100)
+      wheels.stop();
+
+    // Open/close claw every second
     if ((ms - servoTime) > 1000)
     {
       servoTime = ms;
+      isOpen = !isOpen;
 
-      if (claw.getIsOpen())
-      {
-        Serial.println("Claw close");
-        claw.close();
-      }
+      if (isOpen)
+        servo.write(0);
       else
-      {
-        Serial.println("Claw open");
-        claw.open();
-      }
-    }
-
-    // Run wheels for 2 seconds then stop
-    if (!wheelTime)
-    {
-      wheelTime = ms;
-    }
-    else
-    {
-      if ((ms - wheelTime) > 2000)
-        wheels.stop();
-      else
-        wheels.forwards();
+        servo.write(90);
     }
   }
 }
