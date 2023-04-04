@@ -5,7 +5,7 @@ Wheels::Wheels() : motors{AF_DCMotor(1), AF_DCMotor(2), AF_DCMotor(3), AF_DCMoto
     // Initialise DC motors speed
     for (int i = 0; i < 4; i++)
     {
-        this->motors[i].setSpeed(100);
+        this->motors[i].setSpeed(200);
     }
 }
 
