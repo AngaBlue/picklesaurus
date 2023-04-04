@@ -21,8 +21,7 @@ void setup()
   pinMode(LED_BUILTIN, OUTPUT);
 
   // Initialise components
-  // claw.attach(CLAW_SERVO, CLAW_OPENED, CLAW_CLOSED);
-  servo.attach(12);
+  claw.attach(CLAW_SERVO, CLAW_OPENED, CLAW_CLOSED);
   wheels.attach();
 }
 
@@ -34,7 +33,6 @@ void loop()
   uint32_t ms = millis();
   static uint32_t servoTime = 0;
   static uint32_t wheelTime = 0;
-  static boolean isOpen = false;
 
   // Write indicator LED
   // digitalWrite(LED_BUILTIN, isStarted);
@@ -61,12 +59,11 @@ void loop()
     if ((ms - servoTime) > 1000)
     {
       servoTime = ms;
-      isOpen = !isOpen;
 
-      if (isOpen)
-        servo.write(0);
+      if (claw.getIsOpen())
+        claw.close();
       else
-        servo.write(90);
+        claw.open();
     }
   }
 }
