@@ -3,11 +3,13 @@
 #include <Claw.hpp>
 #include <Wheels.hpp>
 #include <Servo.h>
+#include <Ultrasonic.h>
 #include "main.hpp"
 
 static Wheels wheels;
 static Claw claw;
 static Servo servo;
+static Ultrasonic ultrasonic(ULTRASONIC_TRIGGER, ULTRASONIC_ECHO);
 
 void setup()
 {
@@ -35,7 +37,13 @@ void loop()
   static uint32_t wheelTime = 0;
 
   // Write indicator LED
-  // digitalWrite(LED_BUILTIN, isStarted);
+  digitalWrite(LED_BUILTIN, isStarted);
+
+  // Log ultrasonic distance
+#ifdef LOGGING
+  Serial.print("Distance: ");
+  Serial.println(ultrasonic.read());
+#endif
 
   if (!isStarted)
   {
