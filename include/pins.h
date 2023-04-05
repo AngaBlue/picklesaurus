@@ -1,9 +1,9 @@
 /**
  * Motors
  */
-#define CLAW_SERVO 12
+#define CLAW_SERVO A1
 
-#define PUSH_BUTTON 2
+#define PUSH_BUTTON A0
 
-#define ULTRASONIC_TRIGGER 6
-#define ULTRASONIC_ECHO 7
+#define ULTRASONIC_TRIGGER A2
+#define ULTRASONIC_ECHO A3
