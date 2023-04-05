@@ -35,14 +35,19 @@ void loop()
   uint32_t ms = millis();
   static uint32_t servoTime = 0;
   static uint32_t wheelTime = 0;
+  static uint32_t ultrasonicTime = 0;
 
   // Write indicator LED
   digitalWrite(LED_BUILTIN, isStarted);
 
   // Log ultrasonic distance
 #ifdef LOGGING
-  Serial.print("Distance: ");
-  Serial.println(ultrasonic.read());
+  if ((ms - ultrasonicTime) > 100)
+  {
+    ultrasonicTime = ms;
+    Serial.print("Distance: ");
+    Serial.println(ultrasonic.read());
+  }
 #endif
 
   if (!isStarted)
