@@ -1,4 +1,4 @@
-#include "pins.h"
+#include "pins.hpp"
 
 #define LOGGING
 

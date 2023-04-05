@@ -1,4 +1,4 @@
-#include "config.h"
+#include "config.hpp"
 #include <Arduino.h>
 #include <Claw.hpp>
 #include <Wheels.hpp>
@@ -33,22 +33,10 @@ void loop()
 
   // Timing
   uint32_t ms = millis();
-  static uint32_t servoTime = 0;
-  static uint32_t wheelTime = 0;
-  static uint32_t ultrasonicTime = 0;
+  static uint32_t time = 0;
 
   // Write indicator LED
   digitalWrite(LED_BUILTIN, isStarted);
-
-  // Log ultrasonic distance
-#ifdef LOGGING
-  if ((ms - ultrasonicTime) > 100)
-  {
-    ultrasonicTime = ms;
-    Serial.print("Distance: ");
-    Serial.println(ultrasonic.read());
-  }
-#endif
 
   if (!isStarted)
   {
@@ -59,24 +47,20 @@ void loop()
     /**
      * Main active loop
      */
-    // Run wheels for 2 seconds then stop
-    if (!wheelTime)
-      wheelTime = ms;
+    if (!time) 
+      time = ms;
 
-    if ((ms - wheelTime) < 2000)
+    uint32_t diff = ms - time;
+
+    if (diff < 1000) {
+      // Move claw down
+      claw.close();
+    } else if (diff < 3000) {
+      // Move forward
       wheels.forwards();
-    else if ((ms - wheelTime) < 2100)
+    } else if (diff < 4000) {
       wheels.stop();
-
-    // Open/close claw every second
-    if ((ms - servoTime) > 1000)
-    {
-      servoTime = ms;
-
-      if (claw.getIsOpen())
-        claw.close();
-      else
-        claw.open();
+      claw.open();
     }
   }
 }
