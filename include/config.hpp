@@ -2,5 +2,12 @@
 
 #define LOGGING
 
-#define CLAW_OPENED 90
-#define CLAW_CLOSED 0
+#define CLAW_OPENED 0
+#define CLAW_CLOSED 90
+
+#define SPEED 100
+
+#define WHEEL_1_MULT 1.0
+#define WHEEL_2_MULT 1.0
+#define WHEEL_3_MULT 1.0
+#define WHEEL_4_MULT 1.0

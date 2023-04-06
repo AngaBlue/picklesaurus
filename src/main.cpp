@@ -6,7 +6,7 @@
 #include <Ultrasonic.h>
 #include "main.hpp"
 
-static Wheels wheels;
+static Wheels wheels(SPEED);
 static Claw claw;
 static Servo servo;
 static Ultrasonic ultrasonic(ULTRASONIC_TRIGGER, ULTRASONIC_ECHO);
@@ -24,7 +24,8 @@ void setup()
 
   // Initialise components
   claw.attach(CLAW_SERVO, CLAW_OPENED, CLAW_CLOSED);
-  wheels.attach();
+  float multipliers[4] = {WHEEL_1_MULT, WHEEL_2_MULT, WHEEL_3_MULT, WHEEL_4_MULT};
+  wheels.attach(multipliers);
 }
 
 void loop()
@@ -47,18 +48,23 @@ void loop()
     /**
      * Main active loop
      */
-    if (!time) 
+    if (!time)
       time = ms;
 
     uint32_t diff = ms - time;
 
-    if (diff < 1000) {
+    if (diff < 1000)
+    {
       // Move claw down
       claw.close();
-    } else if (diff < 3000) {
+    }
+    else if (diff < 3000)
+    {
       // Move forward
       wheels.forwards();
-    } else if (diff < 4000) {
+    }
+    else if (diff < 4000)
+    {
       wheels.stop();
       claw.open();
     }

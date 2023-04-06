@@ -1,18 +1,15 @@
 #include "Wheels.hpp"
 
-Wheels::Wheels() : motors{AF_DCMotor(1), AF_DCMotor(2), AF_DCMotor(3), AF_DCMotor(4)}
+Wheels::Wheels(uint8_t speed) : motors{AF_DCMotor(1), AF_DCMotor(2), AF_DCMotor(3), AF_DCMotor(4)}
 {
-    // Initialise DC motors speed
-    for (int i = 0; i < 4; i++)
-    {
-        this->motors[i].setSpeed(200);
-    }
+    this->speed = speed;
 }
 
-void Wheels::attach()
+void Wheels::attach(float multipliers[4])
 {
     for (int i = 0; i < 4; i++)
     {
+        this->motors[i].setSpeed(this->speed * multipliers[i]);
         this->motors[i].run(RELEASE);
     }
 }
