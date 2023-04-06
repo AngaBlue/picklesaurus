@@ -2,8 +2,8 @@
 
 #define LOGGING
 
-#define CLAW_OPENED 0
-#define CLAW_CLOSED 90
+#define SCOOP_UP 0
+#define SCOOP_DOWN 90
 
 #define SPEED 100
 

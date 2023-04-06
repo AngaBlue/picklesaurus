@@ -1,7 +1,7 @@
 /**
  * Motors
  */
-#define CLAW_SERVO 9
+#define SCOOP_SERVO 9
 
 #define PUSH_BUTTON A5
 
