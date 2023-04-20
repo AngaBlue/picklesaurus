@@ -30,52 +30,11 @@ void setup()
 
 void loop()
 {
-  static uint8_t isStarted = LOW;
-
-  // Timing
-  uint32_t ms = millis();
-
-  // Write indicator LED
-  digitalWrite(LED_BUILTIN, isStarted);
-
-  if (!isStarted)
+  if (digitalRead(PUSH_BUTTON) == HIGH)
   {
-    isStarted = digitalRead(PUSH_BUTTON);
-  }
-  else
-  {
-    /**
-     * Main active loop
-     */
-    // Log ultrasonic distance every 100ms
-#ifdef LOGGING
-    static uint32_t ultrasonicTime = 0;
-    if (ms - ultrasonicTime > 100)
-    {
-      ultrasonicTime = ms;
-      Serial.print("Distance: ");
-      Serial.println(ultrasonic.read());
-    }
-#endif
-
-    // Move wheels and scoop
-    static uint32_t time = ms;
-    uint32_t diff = ms - time;
-
-    if (diff < 1000)
-    {
-      // Move scoop down
-      scoop.down();
-    }
-    else if (diff < 3000)
-    {
-      // Move forward
-      wheels.forwards();
-    }
-    else if (diff < 4000)
-    {
-      wheels.stop();
-      scoop.up();
-    }
+    scoop.down();
+    delay(3000);
+  } else {
+    scoop.up();
   }
 }

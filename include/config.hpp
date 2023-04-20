@@ -2,8 +2,8 @@
 
 #define LOGGING
 
-#define SCOOP_UP 0
-#define SCOOP_DOWN 90
+#define SCOOP_UP 30
+#define SCOOP_DOWN 0
 
 #define SPEED 100
 
