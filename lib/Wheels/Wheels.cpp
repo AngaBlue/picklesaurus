@@ -24,32 +24,32 @@ void Wheels::stop()
 
 void Wheels::forwards()
 {
-    for (int i = 0; i < 4; i++)
-    {
-        this->motors[i].run(FORWARD);
-    }
+    this->motors[0].run(FORWARD);
+    this->motors[1].run(FORWARD);
+    this->motors[2].run(FORWARD);
+    this->motors[3].run(FORWARD);
 }
 
 void Wheels::backwards()
 {
-    for (int i = 0; i < 4; i++)
-    {
-        this->motors[i].run(BACKWARD);
-    }
+    this->motors[0].run(BACKWARD);
+    this->motors[1].run(BACKWARD);
+    this->motors[2].run(BACKWARD);
+    this->motors[3].run(BACKWARD);
 }
 
 void Wheels::left()
 {
-    for (int i = 0; i < 4; i++)
-    {
-        this->motors[i].run(i % 2 == 0 ? FORWARD : BACKWARD);
-    }
+    this->motors[0].run(FORWARD);
+    this->motors[1].run(BACKWARD);
+    this->motors[2].run(BACKWARD);
+    this->motors[3].run(FORWARD);
 }
 
 void Wheels::right()
 {
-    for (int i = 0; i < 4; i++)
-    {
-        this->motors[i].run(i % 2 != 0 ? FORWARD : BACKWARD);
-    }
+    this->motors[0].run(BACKWARD);
+    this->motors[1].run(FORWARD);
+    this->motors[2].run(FORWARD);
+    this->motors[3].run(BACKWARD);
 }
