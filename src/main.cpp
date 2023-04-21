@@ -2,14 +2,11 @@
 #include <Arduino.h>
 #include <Scoop.hpp>
 #include <Wheels.hpp>
-#include <Servo.h>
-#include <Ultrasonic.h>
 #include "main.hpp"
 
 static Wheels wheels(SPEED);
 static Scoop scoop;
-static Servo servo;
-static Ultrasonic ultrasonic(ULTRASONIC_TRIGGER, ULTRASONIC_ECHO);
+static Servo arm;
 
 void setup()
 {
@@ -26,14 +23,17 @@ void setup()
   scoop.attach(SCOOP_SERVO, SCOOP_UP, SCOOP_DOWN);
   float multipliers[4] = {WHEEL_1_MULT, WHEEL_2_MULT, WHEEL_3_MULT, WHEEL_4_MULT};
   wheels.attach(multipliers);
+  arm.attach(ARM_SERVO);
 }
 
 void loop()
 {
   if (digitalRead(PUSH_BUTTON) == HIGH)
   {
+    wheels.forwards();
     scoop.down();
-    delay(3000);
+    delay(2000);
+    wheels.stop();
   } else {
     scoop.up();
   }
