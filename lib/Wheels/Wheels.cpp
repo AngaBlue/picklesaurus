@@ -53,3 +53,19 @@ void Wheels::right()
     this->motors[2].run(FORWARD);
     this->motors[3].run(BACKWARD);
 }
+
+void Wheels::left_reverse()
+{
+    this->motors[0].run(0);
+    this->motors[1].run(BACKWARD);
+    this->motors[2].run(BACKWARD);
+    this->motors[3].run(0);
+}
+
+void Wheels::right_reverse()
+{
+    this->motors[0].run(BACKWARD);
+    this->motors[1].run(0);
+    this->motors[2].run(0);
+    this->motors[3].run(BACKWARD);
+}

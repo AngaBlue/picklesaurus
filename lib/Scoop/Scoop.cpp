@@ -4,7 +4,7 @@
 
 void Scoop::attach(uint8_t pin, uint8_t up, uint8_t down)
 {
-    Servo::attach(pin);
+    Servo::attach(pin,up,down);
 
     this->upPos = up;
     this->downPos = down;

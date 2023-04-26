@@ -5,6 +5,9 @@
 #define SCOOP_UP 0
 #define SCOOP_DOWN 180
 
+#define ARM_UP 0
+#define ARM_DOWN 180
+
 #define SPEED 100
 
 #define WHEEL_1_MULT 1.0

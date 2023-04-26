@@ -15,6 +15,8 @@ public:
     void forwards();
     void backwards();
     void left();
+    void left_reverse();
+    void right_reverse();
     void right();
     void stop();
 };

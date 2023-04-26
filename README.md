@@ -9,6 +9,7 @@ This project uses PlatformIO's default project structure.
 - `lib/`: libraries created for this project.  These are abstractions that provide a declarative API for performing actions involving multiple inputs and outputs.
   - `Scoop/`: a class for controlling the opening and closing of the scoop.
   - `Wheels/`: a class for controlling the direction the robot moves using the wheels.
+  - `Arm/`: a class for controlling the bending and extension of the robotic arm.
 - `test/`: currently unused.
 
 ## Configuration
