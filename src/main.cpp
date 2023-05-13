@@ -43,19 +43,19 @@ void loop()
     dump();
 
     // Turn right 90 degrees
-    turn(-90);
+    turn(80);
     wheels.stop();
 
     // Pick up & dump squash balls
     pickup();
-    dump();
 
     // Turn right 90 degrees
-    turn(-90);
+    turn(100);
 
     // Go home
     wheels.forwards();
-    delay(1500);
+    delay(1000);
+    dump();
     wheels.stop();
   } else {
     scoop.up();
@@ -97,8 +97,6 @@ bool check_range(range_t *range, int azimuth)
 void turn(int degrees)
 {
   int direction = degrees < 0 ? -1 : 1;
-  // if (direction == LEFT) degrees = degrees * 1.1;
-  // else degrees = degrees * 0.9;
 
   // Get the starting azimuth and the sign of the degrees
   compass.read();
@@ -110,7 +108,7 @@ void turn(int degrees)
 
   // Calculate the range of azimuths to turn through
   range_t range = {start + degrees, start + degrees + 5 * direction};
-  if (direction == RIGHT) range = {range.max, range.min};
+  if (direction == -1) range = {range.max, range.min};
   fix_range(&range);
 
   // Stop when the azimuth is within the range
@@ -125,7 +123,7 @@ void pickup()
     scoop.down();
     delay(500);
     wheels.forwards();
-    delay(2000);
+    delay(750);
     scoop.up();
     delay(500);
 }

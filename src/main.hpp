@@ -3,8 +3,8 @@ struct {
   int max;
 } typedef range_t;
 
-#define LEFT 1
-#define RIGHT -1
+#define LEFT -1
+#define RIGHT 1
 
 void turn(int degrees);
 void fix_range(range_t *range);
