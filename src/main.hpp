@@ -11,3 +11,5 @@ void fix_range(range_t *range);
 bool check_range(range_t *range, int azimuth);
 void dump();
 void pickup();
+void pickup_2();
+

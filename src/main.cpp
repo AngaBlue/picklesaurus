@@ -43,14 +43,14 @@ void loop()
     dump();
 
     // Turn right 90 degrees
-    turn(80);
+    turn(-75);
     wheels.stop();
 
     // Pick up & dump squash balls
-    pickup();
+    pickup_2();
 
     // Turn right 90 degrees
-    turn(100);
+    turn(-80);
 
     // Go home
     wheels.forwards();
@@ -126,6 +126,16 @@ void pickup()
     delay(750);
     scoop.up();
     delay(500);
+}
+
+void pickup_2()
+{
+    scoop.down();
+    delay(1500);
+    wheels.forwards();
+    delay(1100);
+    scoop.up();
+    delay(1000);
 }
 
 void dump()
