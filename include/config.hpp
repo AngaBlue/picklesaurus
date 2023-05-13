@@ -3,14 +3,11 @@
 #define LOGGING
 
 #define SCOOP_UP 0
-#define SCOOP_DOWN 180
+#define SCOOP_DOWN 111
 
-#define ARM_UP 0
-#define ARM_DOWN 180
+#define SPEED 255
 
-#define SPEED 100
-
-#define WHEEL_1_MULT 1.0
+#define WHEEL_1_MULT 0.6
 #define WHEEL_2_MULT 1.0
 #define WHEEL_3_MULT 1.0
-#define WHEEL_4_MULT 1.0
+#define WHEEL_4_MULT 0.6
