@@ -8,7 +8,7 @@ void PickleServo::attach(uint8_t pin, uint8_t start)
   this->write(start);
 }
 
-void PickleServo::move(uint8_t angle, uint32_t time = 1000)
+void PickleServo::move(uint8_t angle, uint32_t time = 0)
 {
   // Calculate whether the angle should increment or decrement
   int start = this->read();
