@@ -22,5 +22,5 @@ public:
      * @param angle The angle to move the servo to.
      * @param time The time in milliseconds to take to move the servo.  Defaults to 0.  If the time is 0, the servo will move as fast as possible.
      */
-    void move(uint8_t angle, uint32_t time = 1000);
+    void move(uint8_t angle, uint32_t time = 0);
 };
