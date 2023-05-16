@@ -1,8 +1,8 @@
 /**
  * Motors
  */
-#define ARM_SERVO 10
-#define SCOOP_SERVO 9
+#define ARM_SERVO 9
+#define SCOOP_SERVO 10
 
 #define PUSH_BUTTON A3
 

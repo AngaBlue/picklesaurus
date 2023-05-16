@@ -1,71 +1,102 @@
-#include "config.hpp"
-#include <Arduino.h>
-#include <Scoop.hpp>
-#include <Wheels.hpp>
-#include <QMC5883LCompass.h>
-#include <Ultrasonic.h>
 #include "main.hpp"
 
-static Wheels wheels(SPEED);
-static Scoop scoop;
-static QMC5883LCompass compass;
-static Ultrasonic ultrasonic(ULTRASONIC_TRIGGER, ULTRASONIC_ECHO);
-
-int startingAzimuth = 0;
+Wheels wheels;
+PickleServo scoop;
+PickleServo arm;
+QMC5883LCompass compass;
 
 void setup()
 {
 #ifdef LOGGING
-  // Logging
+  // Begin serial communication for logging
   Serial.begin(115200);
 #endif
 
-  // Initialise pin modes
+  /**
+   * Initialise pins
+   */
   pinMode(PUSH_BUTTON, INPUT);
-  pinMode(LED_BUILTIN, OUTPUT);
-  
-  // Initialise components
-  compass.init();
-  scoop.attach(SCOOP_SERVO,SCOOP_UP,SCOOP_DOWN);
-  float multipliers[4] = {WHEEL_1_MULT, WHEEL_2_MULT, WHEEL_3_MULT, WHEEL_4_MULT};
-  wheels.attach(multipliers);
 
-  compass.read();
-  startingAzimuth = compass.getAzimuth();
+  /**
+   * Initialise components
+   */
+  compass.init();
+
+  // Attach servos to pins and specify starting positions
+  scoop.attach(SCOOP_SERVO, SCOOP_START);
+  arm.attach(ARM_SERVO, ARM_DOWN);
+
+  // Attach motors to pins and set speed & speed multipliers for each wheel
+  wheels.attach(SPEED, (float[]){WHEEL_1_MULT, WHEEL_2_MULT, WHEEL_3_MULT, WHEEL_4_MULT});
 }
 
 void loop()
 {
   if (digitalRead(PUSH_BUTTON) == HIGH)
   {
-    // Pick up & dump tennis balls
-    pickup();
-    dump();
+    scoop.move(SCOOP_DOWN, 0);
 
-    // Turn right 90 degrees
-    turn(-75);
-    wheels.stop();
-
-    // Pick up & dump squash balls
-    pickup_2();
-
-    // Turn right 90 degrees
-    turn(-80);
-
-    // Go home
+    // Move forwards to collect the tennis balls
     wheels.forwards();
-    delay(1000);
-    dump();
+    delay(750);
+    scoop.move(SCOOP_UP);
+    delay(500);
     wheels.stop();
-  } else {
-    scoop.up();
 
-    // Read compass
+    // Turn left to face the tube
+    turn(LEFT, 90);
+
+    // Slowly move the arm up to dump the tennis balls
+    arm.move(ARM_UP, 2000);
+    delay(500);
+
+    // Move the arm down again
+    arm.move(ARM_DOWN, 2000);
+
+    // Turn to face the squash balls & move the scoop down
+    turn(RIGHT, 180);
+    scoop.move(SCOOP_DOWN);
+
+    // Move forwards to collect the squash balls
+    wheels.forwards();
+    delay(750);
+    scoop.move(SCOOP_UP);
+    delay(500);
+    wheels.stop();
+
+    // Turn backwards to face the tube
+    turn(RIGHT, 180);
+
+    // Move against the wall
+    wheels.backwards();
+    delay(500);
+    wheels.stop();
+
+    // Slowly move the arm up to dump the tennis balls
+    arm.move(ARM_UP, 2000);
+    delay(500);
+
+    // Move the arm down again
+    arm.move(ARM_DOWN, 2000); 
+    scoop.move(SCOOP_START);
+
+    // Turn to face the start area
+    turn(LEFT, 90);
+
+    // Move back to the start area
+    wheels.forwards();
+    delay(750);
+    wheels.stop();
+  }
+  else
+  {
+#ifdef LOGGING
+    // Read & print azimuth
     compass.read();
     int azimuth = compass.getAzimuth();
-#ifdef LOGGING
+
     char output[32];
-    sprintf(output, "Starting Azimuth: %3d Azimuth: %3d", startingAzimuth, azimuth);
+    sprintf(output, "Azimuth: %3d", azimuth);
     Serial.println(output);
 #endif
   }
@@ -74,78 +105,47 @@ void loop()
 void fix_range(range_t *range)
 {
   // Fix minimum
-  if (range->min < 0) range->min += 360;
-  else if (range->min >= 360) range->min -= 360;
+  if (range->min < 0)
+    range->min += 360;
+  else if (range->min >= 360)
+    range->min -= 360;
 
   // Fix maximum
-  if (range->max < 0) range->max += 360;
-  else if (range->max >= 360) range->max -= 360;
+  if (range->max < 0)
+    range->max += 360;
+  else if (range->max >= 360)
+    range->max -= 360;
 }
 
 bool check_range(range_t *range, int azimuth)
 {
-  #ifdef LOGGING
-    char output[32];
-    sprintf(output, "Starting Azimuth: %3d Azimuth: %3d", startingAzimuth, azimuth);
-    Serial.println(output);
-#endif
-
-  if (range->min < range->max) return azimuth >= range->min && azimuth <= range->max;
-  else return azimuth >= range->min || azimuth <= range->max;
+  if (range->min < range->max)
+    return azimuth >= range->min && azimuth <= range->max;
+  else
+    return azimuth >= range->min || azimuth <= range->max;
 }
 
-void turn(int degrees)
+void turn(Direction direction, int degrees)
 {
-  int direction = degrees < 0 ? -1 : 1;
-
   // Get the starting azimuth and the sign of the degrees
   compass.read();
   int start = compass.getAzimuth();
 
   // For positive degrees: turn left, for negative degrees: turn left
-  if (direction == LEFT) wheels.left();
-  else wheels.right();
+  if (direction == LEFT)
+    wheels.left();
+  else
+    wheels.right();
 
   // Calculate the range of azimuths to turn through
   range_t range = {start + degrees, start + degrees + 5 * direction};
-  if (direction == -1) range = {range.max, range.min};
+  if (direction == -1)
+    range = {range.max, range.min};
   fix_range(&range);
 
   // Stop when the azimuth is within the range
   while (!check_range(&range, compass.getAzimuth()))
   {
     compass.read();
-  }  
+  }
 }
-
-void pickup()
-{
-    scoop.down();
-    delay(500);
-    wheels.forwards();
-    delay(750);
-    scoop.up();
-    delay(500);
-}
-
-void pickup_2()
-{
-    scoop.down();
-    delay(1500);
-    wheels.forwards();
-    delay(1100);
-    scoop.up();
-    delay(1000);
-}
-
-void dump()
-{
-  // Dump tennis balls
-  scoop.down();
-  delay(500);
-  wheels.backwards();
-  delay(500);
-  wheels.stop();
-  delay(1000);
-  scoop.up();
-} 
