@@ -43,8 +43,13 @@ void loop()
     delay(500);
     wheels.stop();
 
-    // Turn left to face the tube
-    turn(LEFT, 90);
+    // Turn left to face the tube backwards
+    turn(RIGHT, 90);
+
+    // Move against the wall
+    wheels.backwards();
+    delay(500);
+    wheels.stop();
 
     // Slowly move the arm up to dump the tennis balls
     arm.move(ARM_UP, 2000);
@@ -54,7 +59,6 @@ void loop()
     arm.move(ARM_DOWN, 2000);
 
     // Turn to face the squash balls & move the scoop down
-    turn(RIGHT, 180);
     scoop.move(SCOOP_DOWN);
 
     // Move forwards to collect the squash balls
