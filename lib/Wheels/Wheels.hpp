@@ -8,15 +8,38 @@ private:
     uint8_t speed;
 
 public:
-    Wheels(uint8_t speed);
+    Wheels();
 
-    void attach(float mutlipliers[4]);
+    /**
+     * @brief Attaches the wheels to the motor shield.
+     *
+     * @param speed The speed of the wheels.
+     * @param multipliers The speed multipliers for each wheel. This is used to account for differences in the wheels.
+     */
+    void attach(uint8_t speed, float multipliers[4]);
 
+    /**
+     * @brief Moves all the wheels forwards.
+     */
     void forwards();
+
+    /**
+     * @brief Moves all the wheels backwards.
+     */
     void backwards();
+
+    /**
+     * @brief Moves the left wheels backwards and the right wheels forwards.
+     */
     void left();
-    void left_reverse();
-    void right_reverse();
+
+    /**
+     * @brief Moves the right wheels backwards and the left wheels forwards.
+     */
     void right();
+
+    /**
+     * @brief Stops all the wheels.
+     */
     void stop();
 };
