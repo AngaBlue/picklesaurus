@@ -27,7 +27,8 @@ void setup()
   arm.attach(ARM_SERVO, ARM_DOWN);
 
   // Attach motors to pins and set speed & speed multipliers for each wheel
-  wheels.attach(SPEED, (float[]){WHEEL_1_MULT, WHEEL_2_MULT, WHEEL_3_MULT, WHEEL_4_MULT});
+  const float MULTIPLIERS[4] = {WHEEL_1_MULT, WHEEL_2_MULT, WHEEL_3_MULT, WHEEL_4_MULT};
+  wheels.attach(SPEED, MULTIPLIERS);
 }
 
 void loop()

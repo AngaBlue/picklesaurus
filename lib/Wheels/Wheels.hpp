@@ -16,7 +16,7 @@ public:
      * @param speed The speed of the wheels.
      * @param multipliers The speed multipliers for each wheel. This is used to account for differences in the wheels.
      */
-    void attach(uint8_t speed, float multipliers[4]);
+    void attach(uint8_t speed, const float multipliers[4]);
 
     /**
      * @brief Moves all the wheels forwards.
