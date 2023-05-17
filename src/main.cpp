@@ -23,7 +23,7 @@ void setup()
   compass.init();
 
   // Attach servos to pins and specify starting positions
-  scoop.attach(SCOOP_SERVO, SCOOP_UP);
+  scoop.attach(SCOOP_SERVO, SCOOP_START);
   arm.attach(ARM_SERVO, ARM_DOWN);
 
   // Attach motors to pins and set speed & speed multipliers for each wheel
@@ -35,66 +35,38 @@ void loop()
 {
   if (digitalRead(PUSH_BUTTON) == HIGH)
   {
-    /*
-    scoop.move(SCOOP_DOWN, 500);
+    scoop.move(SCOOP_DOWN, 250);
+    delay(500);
 
-    // Move forwards to collect the tennis balls
+    // Collect squash balls
+    wheels.forwards();
+    delay(1250);
+    scoop.move(SCOOP_UP, 250);
+    wheels.stop();
+
+    // Move backwards
+    wheels.backwards();
+    delay(1020);
+    wheels.stop();
+
+    // Turn to tube
+    arm.move(ARM_UP, 2000);
+    turn(RIGHT, 80);
+
+    // Move against wall
     wheels.forwards();
     delay(1000);
-    scoop.move(SCOOP_UP);
+    wheels.stop();
+
+    // Drop balls
+    scoop.move(SCOOP_DEPOSIT, 500);
+    delay(2000);
+    scoop.move(SCOOP_UP, 500);
+    wheels.backwards();
     delay(500);
     wheels.stop();
 
-    // Turn left to face the tube backwards
-    turn(RIGHT, 90);
-
-    // Move against the wall
-    wheels.backwards();
-    delay(1000);
-    wheels.stop();*/
-
-    // Slowly move the arm up to dump the tennis balls
-    arm.move(ARM_UP, 2000);
-    delay(3000);
-
-    // Move the arm down again
     arm.move(ARM_DOWN, 2000);
-
-    // Turn to face the squash balls & move the scoop down
-    scoop.move(SCOOP_DOWN);
-
-    return;
-
-    // Move forwards to collect the squash balls
-    wheels.forwards();
-    delay(750);
-    scoop.move(SCOOP_UP);
-    delay(500);
-    wheels.stop();
-
-    // Turn backwards to face the tube
-    turn(RIGHT, 180);
-
-    // Move against the wall
-    wheels.backwards();
-    delay(1000);
-    wheels.stop();
-
-    // Slowly move the arm up to dump the squash balls
-    arm.move(ARM_UP, 2000);
-    delay(500);
-
-    // Move the arm down again
-    arm.move(ARM_DOWN, 2000); 
-    scoop.move(SCOOP_START);
-
-    // Turn to face the start area
-    turn(LEFT, 90);
-
-    // Move back to the start area
-    wheels.forwards();
-    delay(750);
-    wheels.stop();
   }
   else
   {
