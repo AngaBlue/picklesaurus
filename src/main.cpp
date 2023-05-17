@@ -47,16 +47,17 @@ void loop()
 
     // Move backwards
     wheels.backwards();
-    delay(1020);
+    delay(1069);//69 hahah
     wheels.stop();
 
     // Turn to tube
     arm.move(ARM_UP, 2000);
-    turn(RIGHT, 69); //69 hahaha
-    
+    turn(RIGHT, 69+11); //69 hahaha
+
+
     // Move against wall
     wheels.forwards();
-    delay(1640);
+    delay(1800);
     wheels.stop();
 
     // Drop balls
@@ -64,15 +65,15 @@ void loop()
     scoop.move(SCOOP_DEPOSIT,500);
     delay(2000);
     //shake that booty
-    for (int i = 0; i < 1; i++) //so the loop is entirely redundant but anyway just in case we want to change it later
+    for (int i = 0; i < 2; i++) //so the loop is entirely redundant but anyway just in case we want to change it later
     {
       scoop.move(SCOOP_DEPOSIT-45,WIGGLE_TIME);
       delay(WIGGLE_TIME/3);
       scoop.move(SCOOP_DEPOSIT);
-      delay(1500); //wait for them hoes to roll
+      delay(2200); //wait for them hoes to roll
     }
-    delay(600); //600 seems kinda cool
-    //stop shakin that booty
+    delay(200); //200 delay arbitrily added seems kinda cool??
+    //this is the end of shaking that booty.
     scoop.move(SCOOP_UP, 500);
     
     
@@ -82,32 +83,34 @@ void loop()
     wheels.stop();
 
     // Move to collect tennis balls
-    turn(LEFT, 78);
+    turn(LEFT, 88);
     wheels.forwards();
     delay(1100);
     wheels.stop();
 
    // Move scoop and arm down to collect tennis balls
-    turn(LEFT, 80);
+    turn(LEFT, 56); // was 90 which was too much
     arm.move(ARM_DOWN,2000);
     scoop.move(SCOOP_DOWN, 500);
     //drive forward and collect the big green balls
     wheels.forwards();
     delay(1700);
     wheels.stop();
-    arm.move(ARM_UP,500);
+    arm.move(ARM_UP,1000);
     scoop.move(SCOOP_UP, 250);
 
     // Move backwards &  turn around
     wheels.backwards();
     delay(500);
     wheels.stop();
-    turn(RIGHT, 180);
+    turn(RIGHT, 180-10);
     wheels.backwards();
-    delay(1000);
+    delay(1500);
     wheels.stop();
 
-    arm.move(ARM_DOWN, 2000);
+    //now deposit the big green balls
+    arm.move(180, 4000);
+
   }
   else
   {
