@@ -23,7 +23,7 @@ void setup()
   compass.init();
 
   // Attach servos to pins and specify starting positions
-  scoop.attach(SCOOP_SERVO, SCOOP_START);
+  scoop.attach(SCOOP_SERVO, SCOOP_UP);
   arm.attach(ARM_SERVO, ARM_DOWN);
 
   // Attach motors to pins and set speed & speed multipliers for each wheel
@@ -35,11 +35,12 @@ void loop()
 {
   if (digitalRead(PUSH_BUTTON) == HIGH)
   {
-    scoop.move(SCOOP_DOWN, 0);
+    /*
+    scoop.move(SCOOP_DOWN, 500);
 
     // Move forwards to collect the tennis balls
     wheels.forwards();
-    delay(750);
+    delay(1000);
     scoop.move(SCOOP_UP);
     delay(500);
     wheels.stop();
@@ -50,17 +51,19 @@ void loop()
     // Move against the wall
     wheels.backwards();
     delay(1000);
-    wheels.stop();
+    wheels.stop();*/
 
     // Slowly move the arm up to dump the tennis balls
     arm.move(ARM_UP, 2000);
-    delay(500);
+    delay(3000);
 
     // Move the arm down again
     arm.move(ARM_DOWN, 2000);
 
     // Turn to face the squash balls & move the scoop down
     scoop.move(SCOOP_DOWN);
+
+    return;
 
     // Move forwards to collect the squash balls
     wheels.forwards();
@@ -77,7 +80,7 @@ void loop()
     delay(1000);
     wheels.stop();
 
-    // Slowly move the arm up to dump the tennis balls
+    // Slowly move the arm up to dump the squash balls
     arm.move(ARM_UP, 2000);
     delay(500);
 

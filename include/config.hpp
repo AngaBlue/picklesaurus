@@ -3,10 +3,10 @@
 #define LOGGING
 
 #define SCOOP_START 0
-#define SCOOP_UP 50
+#define SCOOP_UP 80
 #define SCOOP_DOWN 111
 
-#define ARM_UP 180
+#define ARM_UP 160
 #define ARM_DOWN 0
 
 #define SPEED 255
