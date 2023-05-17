@@ -51,7 +51,7 @@ void loop()
 
     // Turn to tube
     arm.move(ARM_UP, 2000);
-    turn(RIGHT, 70);
+    turn(RIGHT, 69); //69 hahaha
 
     // Move against wall
     wheels.forwards();
@@ -67,7 +67,7 @@ void loop()
     wheels.stop();
 
     // Move arm down
-    arm.move(ARM_DOWN, 2000);
+    //arm.move(ARM_DOWN, 2000);
 
     // Move to collect tennis balls
     turn(LEFT, 90);
