@@ -49,7 +49,7 @@ void loop()
 
     // Move against the wall
     wheels.backwards();
-    delay(500);
+    delay(1000);
     wheels.stop();
 
     // Slowly move the arm up to dump the tennis balls
@@ -74,7 +74,7 @@ void loop()
 
     // Move against the wall
     wheels.backwards();
-    delay(500);
+    delay(1000);
     wheels.stop();
 
     // Slowly move the arm up to dump the tennis balls
