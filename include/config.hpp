@@ -6,6 +6,7 @@
 #define SCOOP_UP 80
 #define SCOOP_DOWN 114
 #define SCOOP_DEPOSIT 180
+#define SCOOP_TENNIS_DEPOSIT 120
 
 #define ARM_UP 65
 #define ARM_DOWN 0

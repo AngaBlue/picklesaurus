@@ -47,7 +47,7 @@ void loop()
 
     // Move backwards
     wheels.backwards();
-    delay(1069);//69 hahah
+    delay(1000);//69 hahah
     wheels.stop();
 
     // Turn to tube
@@ -85,7 +85,7 @@ void loop()
     // Move to collect tennis balls
     turn(LEFT, 88);
     wheels.forwards();
-    delay(1100);
+    delay(1350);
     wheels.stop();
 
    // Move scoop and arm down to collect tennis balls
@@ -94,22 +94,41 @@ void loop()
     scoop.move(SCOOP_DOWN, 500);
     //drive forward and collect the big green balls
     wheels.forwards();
-    delay(1700);
+    delay(1175);
+    
+    //move away from wall slightly
+    
+    scoop.move(SCOOP_UP, 150);
     wheels.stop();
     arm.move(ARM_UP,1000);
-    scoop.move(SCOOP_UP, 250);
-
+    
     // Move backwards &  turn around
     wheels.backwards();
     delay(500);
     wheels.stop();
-    turn(RIGHT, 180-10);
-    wheels.backwards();
-    delay(1500);
+    //start turning the robot around 180 degrees to get into position for tennis deposit:
+    turn(RIGHT, 90); 
+
+    //move forward slightly to get more towards the edge
+    wheels.forwards();
+    delay(100);
+    
+    turn(RIGHT,90); //turn to face the tennis tube
+    wheels.backwards(); 
+    delay(1000);
     wheels.stop();
+    //ideally we are now facing the tube and flush against the cardboard
 
     //now deposit the big green balls
-    arm.move(180, 4000);
+    scoop.move(SCOOP_TENNIS_DEPOSIT,1000);
+    arm.move(150, 2000);
+    scoop.move(SCOOP_TENNIS_DEPOSIT+30,2000);
+
+
+    //return to start hopefully.
+    wheels.forwards();
+    delay(1250);
+    //profit??
 
   }
   else
