@@ -51,11 +51,11 @@ void loop()
 
     // Turn to tube
     arm.move(ARM_UP, 2000);
-    turn(RIGHT, 80);
+    turn(RIGHT, 70);
 
     // Move against wall
     wheels.forwards();
-    delay(1000);
+    delay(1500);
     wheels.stop();
 
     // Drop balls
@@ -63,7 +63,33 @@ void loop()
     delay(2000);
     scoop.move(SCOOP_UP, 500);
     wheels.backwards();
+    delay(750);
+    wheels.stop();
+
+    // Move arm down
+    arm.move(ARM_DOWN, 2000);
+
+    // Move to collect tennis balls
+    turn(LEFT, 90);
+    wheels.forwards();
+    delay(1250);
+    wheels.stop();
+
+   // Move scoop down and collect tennis balls
+    scoop.move(SCOOP_DOWN, 500);
+    turn(LEFT, 90);
+    wheels.forwards();
+    delay(2000);
+    wheels.stop();
+    scoop.move(SCOOP_UP, 250);
+
+    // Move backwards &  turn around
+    wheels.backwards();
     delay(500);
+    wheels.stop();
+    turn(RIGHT, 180);
+    wheels.backwards();
+    delay(1000);
     wheels.stop();
 
     arm.move(ARM_DOWN, 2000);
