@@ -143,7 +143,9 @@ void turn(Direction direction, int degrees)
     wheels.right();
 
   // Calculate the range of azimuths to turn through
-  range_t range = {start + degrees, start + degrees + 5 * direction};
+  range_t range = {start + (degrees * direction), start + (degrees + 5 * direction)};
+
+  // If the direction is negative, switch the minimum and maximum
   if (direction == -1)
     range = {range.max, range.min};
   fix_range(&range);
