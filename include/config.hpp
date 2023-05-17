@@ -9,7 +9,7 @@
 
 #define ARM_UP 65
 #define ARM_DOWN 0
-
+#define WIGGLE_TIME 300
 #define SPEED 255
 
 #define WHEEL_1_MULT 1.0

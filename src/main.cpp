@@ -35,6 +35,7 @@ void loop()
 {
   if (digitalRead(PUSH_BUTTON) == HIGH)
   {
+    
     scoop.move(SCOOP_DOWN, 250);
     delay(500);
 
@@ -52,35 +53,49 @@ void loop()
     // Turn to tube
     arm.move(ARM_UP, 2000);
     turn(RIGHT, 69); //69 hahaha
-
+    
     // Move against wall
     wheels.forwards();
-    delay(1500);
+    delay(1640);
     wheels.stop();
 
     // Drop balls
     scoop.move(SCOOP_DEPOSIT, 500);
+    scoop.move(SCOOP_DEPOSIT,500);
     delay(2000);
+    //shake that booty
+    for (int i = 0; i < 1; i++) //so the loop is entirely redundant but anyway just in case we want to change it later
+    {
+      scoop.move(SCOOP_DEPOSIT-45,WIGGLE_TIME);
+      delay(WIGGLE_TIME/3);
+      scoop.move(SCOOP_DEPOSIT);
+      delay(1500); //wait for them hoes to roll
+    }
+    delay(600); //600 seems kinda cool
+    //stop shakin that booty
     scoop.move(SCOOP_UP, 500);
+    
+    
+    
     wheels.backwards();
     delay(750);
     wheels.stop();
 
-    // Move arm down
-    //arm.move(ARM_DOWN, 2000);
-
     // Move to collect tennis balls
-    turn(LEFT, 90);
+    turn(LEFT, 78);
     wheels.forwards();
-    delay(1250);
+    delay(1100);
     wheels.stop();
 
-   // Move scoop down and collect tennis balls
+   // Move scoop and arm down to collect tennis balls
+    turn(LEFT, 80);
+    arm.move(ARM_DOWN,2000);
     scoop.move(SCOOP_DOWN, 500);
-    turn(LEFT, 90);
+    //drive forward and collect the big green balls
     wheels.forwards();
-    delay(2000);
+    delay(1700);
     wheels.stop();
+    arm.move(ARM_UP,500);
     scoop.move(SCOOP_UP, 250);
 
     // Move backwards &  turn around
