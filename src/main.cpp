@@ -151,6 +151,8 @@ void turn(Direction direction, int degrees)
   // Stop when the azimuth is within the range
   while (!check_range(&range, compass.getAzimuth()))
   {
-    compass.read();
+     compass.read();
   }
+
+  wheels.stop();
 }
