@@ -95,7 +95,7 @@ void loop()
     scoop.move(SCOOP_DOWN, 500);
     //drive forward and collect the big green balls
     wheels.forwards();
-    delay(1420);
+    delay(1550);
     
 
     
@@ -124,7 +124,7 @@ void loop()
     delay(400);
     wheels.stop();
     //start turning the robot around 180 degrees to get into position for tennis deposit:
-    turn(RIGHT, 179); 
+    turn(RIGHT, 160); 
 
     wheels.backwards(); 
     delay(850);
@@ -140,8 +140,8 @@ void loop()
     arm.move(150, 2000);
     delay(1000);
     arm.move(160,1000);
-    delay(7000); //make shorter maybe
-    scoop.move(30,2000); //here is where they ought to drop out?
+    delay(3000); //make shorter maybe
+    scoop.move(95,2000); //here is where they ought to drop out?
     delay(4000);
 
 
@@ -152,8 +152,18 @@ void loop()
     wheels.stop();
     turn(RIGHT,75); //75 to clear the zone of where a tennis ball may potentially be lying
     wheels.forwards();
-    delay(600);
+    delay(700);
     wheels.stop();
+    turn(RIGHT,15);
+    wheels.forwards();
+    delay(700);
+    wheels.stop();
+    
+
+
+    wheels.stop();
+    delay(1000);
+    arm.move(ARM_DOWN,2000);
     //profit??
 
   }
