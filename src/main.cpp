@@ -127,7 +127,7 @@ void loop()
     turn(RIGHT,  148); 
 
     wheels.backwards(); 
-    delay(850);
+    delay(950);
     wheels.stop();
     //ideally we are now facing the tube and flush against the cardboard
 
@@ -137,7 +137,7 @@ void loop()
     for (int i = 80; i < 161; i=i+5)
     {
       arm.move(i,500);
-      delay(750);
+      delay(300);
     }
     delay(250); //probably not necassary
     scoop.move(84,2000); //here is where they ought to drop out?
@@ -155,13 +155,9 @@ void loop()
     wheels.forwards();
     delay(700);
     wheels.stop();
-    turn(RIGHT,35);
+    turn(RIGHT,35); 
     wheels.forwards();
     delay(1550);
-    wheels.stop();
-    
-
-
     wheels.stop();
     delay(300);
     arm.move(ARM_DOWN,2000);
