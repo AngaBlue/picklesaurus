@@ -48,7 +48,7 @@ void loop()
 
     // Move backwards
     wheels.backwards();
-    delay(975);
+    delay(1069);
     wheels.stop();
 
     // Turn to tube
@@ -66,14 +66,14 @@ void loop()
     scoop.move(SCOOP_DEPOSIT, 500);
     delay(2000);
     //shake that booty
-    for (int i = 0; i < 2; i++) //so the loop is entirely redundant but anyway just in case we want to change it later
+    for (int i = 0; i < 2; i++) 
     {
       scoop.move(SCOOP_DEPOSIT-45,WIGGLE_TIME);
       delay(WIGGLE_TIME/3);
       scoop.move(SCOOP_DEPOSIT);
-      delay(2200); //wait for them hoes to roll
+      delay(2400); //wait for them hoes to roll
     }
-    delay(200); //200 delay arbitrily added seems kinda cool??
+    delay(269); //269 delay arbitrily added seems kinda cool??
     //this is the end of shaking that booty.
     scoop.move(SCOOP_UP, 500);
     
@@ -86,11 +86,11 @@ void loop()
     // Move to collect tennis balls
     turn(LEFT, 88);
     wheels.forwards();
-    delay(1250); 
+    delay(1100); 
     wheels.stop();
 
    // Move scoop and arm down to collect tennis balls
-    turn(LEFT, 56); // was 90 which was too much
+    turn(LEFT, 50); // was 90 which was too much
     arm.move(ARM_DOWN,2000);
     scoop.move(SCOOP_DOWN, 500);
     //drive forward and collect the big green balls
@@ -115,8 +115,8 @@ void loop()
     turn(LEFT,30);
     delay(333);
     scoop.move(SCOOP_UP,1000);
-    arm.move(ARM_UP,1000);
-    arm.move(ARM_UP+20,700);
+    arm.move(ARM_UP+5,1000);
+    
 
     
     // Move backwards &  turn around
@@ -124,7 +124,7 @@ void loop()
     delay(400);
     wheels.stop();
     //start turning the robot around 180 degrees to get into position for tennis deposit:
-    turn(RIGHT, 160); 
+    turn(RIGHT,  148); 
 
     wheels.backwards(); 
     delay(850);
@@ -133,20 +133,21 @@ void loop()
 
     //now deposit the big green balls
     scoop.move(SCOOP_TENNIS_DEPOSIT,1000);
-    arm.move(130,1000);
-    delay(1000);
-    arm.move(140,1000);
-    delay(1000);
-    arm.move(150, 2000);
-    delay(1000);
-    arm.move(160,1000);
-    delay(3000); //make shorter maybe
-    scoop.move(95,2000); //here is where they ought to drop out?
+
+    for (int i = 80; i < 161; i=i+5)
+    {
+      arm.move(i,500);
+      delay(750);
+    }
+    delay(250); //probably not necassary
+    scoop.move(84,2000); //here is where they ought to drop out?
     delay(4000);
 
 
 
-    //return to start hopefully.
+    //return to start hopefully:
+    arm.move(ARM_DOWN,2000);
+    delay(2000);
     wheels.forwards();
     delay(600);
     wheels.stop();
@@ -154,16 +155,17 @@ void loop()
     wheels.forwards();
     delay(700);
     wheels.stop();
-    turn(RIGHT,15);
+    turn(RIGHT,35);
     wheels.forwards();
-    delay(700);
+    delay(1550);
     wheels.stop();
     
 
 
     wheels.stop();
-    delay(1000);
+    delay(300);
     arm.move(ARM_DOWN,2000);
+    scoop.move(SCOOP_START);
     //profit??
 
   }
