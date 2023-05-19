@@ -152,7 +152,7 @@ void loop()
     int32_t azimuth = compass.getAzimuth();
 
     char output[32];
-    sprintf(output, "Azimuth: %3d", azimuth);
+    sprintf(output, "Azimuth: %3lu", azimuth);
     Serial.println(output);
 #endif
   }
