@@ -2,13 +2,13 @@
 
 Wheels::Wheels() : motors{AF_DCMotor(1), AF_DCMotor(2), AF_DCMotor(3), AF_DCMotor(4)} {}
 
-void Wheels::attach(uint8_t speed, const float multipliers[4])
+void Wheels::attach(uint8_t speed, const multipliers_t multipliers)
 {
     this->speed = speed;
 
-    for (int i = 0; i < 4; i++)
+    for (int i = 0; i < 4; ++i)
     {
-        this->motors[i].setSpeed(this->speed * multipliers[i]);
+        this->motors[i].setSpeed(this->speed * ((float *)&multipliers)[i]);
         this->motors[i].run(RELEASE);
     }
 }

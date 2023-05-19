@@ -1,6 +1,14 @@
 #include <Arduino.h>
 #include <AFMotor.h>
 
+struct multipliers_t
+{
+    float front_left;
+    float front_right;
+    float back_left;
+    float back_right;
+} typedef multipliers_t;
+
 class Wheels
 {
 private:
@@ -16,7 +24,7 @@ public:
      * @param speed The speed of the wheels.
      * @param multipliers The speed multipliers for each wheel. This is used to account for differences in the wheels.
      */
-    void attach(uint8_t speed, const float multipliers[4]);
+    void attach(uint8_t speed, const multipliers_t multipliers);
 
     /**
      * @brief Moves all the wheels forwards.
