@@ -6,7 +6,7 @@ void Wheels::attach(uint8_t speed, const multipliers_t multipliers)
 {
     this->speed = speed;
 
-    for (int i = 0; i < 4; ++i)
+    for (size_t i = 0; i < 4; ++i)
     {
         this->motors[i].setSpeed(this->speed * ((float *)&multipliers)[i]);
         this->motors[i].run(RELEASE);

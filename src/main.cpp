@@ -62,7 +62,7 @@ void loop()
     scoop.move(SCOOP_DEPOSIT, 500);
     delay(2000);
     // Shake the tube
-    for (int i = 0; i < 2; i++)
+    for (uint8_t i = 0; i < 2; ++i)
     {
       scoop.move(SCOOP_DEPOSIT - 45, WIGGLE_TIME);
       delay(WIGGLE_TIME / 3);
@@ -116,7 +116,7 @@ void loop()
     // now deposit the big green balls
     scoop.move(SCOOP_TENNIS_DEPOSIT, 1000);
 
-    for (int i = 80; i < 161; i = i + 5)
+    for (uint32_t i = 80; i <= 160; i += 5)
     {
       arm.move(i, 500);
       delay(300);
@@ -149,7 +149,7 @@ void loop()
 #ifdef LOGGING
     // Read & print azimuth
     compass.read();
-    int azimuth = compass.getAzimuth();
+    int32_t azimuth = compass.getAzimuth();
 
     char output[32];
     sprintf(output, "Azimuth: %3d", azimuth);
@@ -173,7 +173,7 @@ void fix_range(range_t *range)
     range->max -= 360;
 }
 
-bool check_range(range_t *range, int azimuth)
+bool check_range(range_t *range, int32_t azimuth)
 {
   if (range->min < range->max)
     return azimuth >= range->min && azimuth <= range->max;
@@ -181,11 +181,11 @@ bool check_range(range_t *range, int azimuth)
     return azimuth >= range->min || azimuth <= range->max;
 }
 
-void turn(Direction direction, int degrees)
+void turn(Direction direction, int32_t degrees)
 {
   // Get the starting azimuth and the sign of the degrees
   compass.read();
-  int start = compass.getAzimuth();
+  int32_t start = compass.getAzimuth();
 
   // For positive degrees: turn left, for negative degrees: turn left
   if (direction == LEFT)
