@@ -50,9 +50,8 @@ void loop()
     delay(1069);
     wheels.stop();
 
-    // Turn to tube
-
-    turn(RIGHT, 69 + 11); // 69 hahaha
+    // Turn to the tube
+    turn(RIGHT, 80);
 
     // Move against wall
     wheels.forwards();
@@ -63,7 +62,7 @@ void loop()
     scoop.move(SCOOP_DEPOSIT, 500);
     scoop.move(SCOOP_DEPOSIT, 500);
     delay(2000);
-    // shake that booty
+    // Shake the tube
     for (int i = 0; i < 2; i++)
     {
       scoop.move(SCOOP_DEPOSIT - 45, WIGGLE_TIME);
@@ -72,9 +71,9 @@ void loop()
       delay(2400); // wait for them hoes to roll
     }
     delay(269); // 269 delay arbitrily added seems kinda cool??
-    // this is the end of shaking that booty.
     scoop.move(SCOOP_UP, 500);
 
+    // Move backwards from tube
     wheels.backwards();
     delay(750);
     wheels.stop();
@@ -152,6 +151,7 @@ void loop()
     delay(300);
     arm.move(ARM_DOWN, 2000);
     scoop.move(SCOOP_START);
+
     // profit??
   }
   else
