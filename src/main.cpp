@@ -46,17 +46,13 @@ void loop()
     arm.move(ARM_UP, 2000);
 
     // Move backwards
-    wheels.backwards();
-    delay(1069);
-    wheels.stop();
+    wheels.backwards(1069);
 
     // Turn to the tube
     turn(RIGHT, 80);
 
     // Move against wall
-    wheels.forwards();
-    delay(1800);
-    wheels.stop();
+    wheels.forwards(1800);
 
     // Drop balls
     scoop.move(SCOOP_DEPOSIT, 500);
@@ -74,30 +70,21 @@ void loop()
     scoop.move(SCOOP_UP, 500);
 
     // Move backwards from tube
-    wheels.backwards();
-    delay(750);
-    wheels.stop();
+    wheels.backwards(750);
 
     // Move to collect tennis balls
     turn(LEFT, 88);
-    wheels.forwards();
-    delay(1100);
-    wheels.stop();
+    wheels.forwards(1100);
 
     // Move scoop and arm down to collect tennis balls
     turn(LEFT, 50); // was 90 which was too much
     arm.move(ARM_DOWN, 2000);
     scoop.move(SCOOP_DOWN, 500);
     // drive forward and collect the big green balls
-    wheels.forwards();
-    delay(1550);
-
-    wheels.stop();
+    wheels.forwards(1550);
     delay(2000);
     // move away from wall slightly
-    wheels.backwards();
-    delay(100);
-    wheels.stop();
+    wheels.backwards(100);
 
     // rotate left and right to knock last tennis ball away
     scoop.move(103, 150);
@@ -111,15 +98,11 @@ void loop()
     arm.move(ARM_UP + 5, 1000);
 
     // Move backwards &  turn around
-    wheels.backwards();
-    delay(400);
-    wheels.stop();
+    wheels.backwards(400);
     // start turning the robot around 180 degrees to get into position for tennis deposit:
     turn(RIGHT, 148);
 
-    wheels.backwards();
-    delay(950);
-    wheels.stop();
+    wheels.backwards(950);
     // ideally we are now facing the tube and flush against the cardboard
 
     // now deposit the big green balls
@@ -137,17 +120,11 @@ void loop()
     // return to start hopefully:
     arm.move(ARM_DOWN, 2000);
     delay(2000);
-    wheels.forwards();
-    delay(600);
-    wheels.stop();
+    wheels.forwards(600);
     turn(RIGHT, 75); // 75 to clear the zone of where a tennis ball may potentially be lying
-    wheels.forwards();
-    delay(700);
-    wheels.stop();
+    wheels.forwards(700);
     turn(RIGHT, 35);
-    wheels.forwards();
-    delay(1550);
-    wheels.stop();
+    wheels.forwards(1550);
     delay(300);
     arm.move(ARM_DOWN, 2000);
     scoop.move(SCOOP_START);

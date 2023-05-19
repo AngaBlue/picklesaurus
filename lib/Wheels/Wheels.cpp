@@ -15,40 +15,64 @@ void Wheels::attach(uint8_t speed, const float multipliers[4])
 
 void Wheels::stop()
 {
-    for (int i = 0; i < 4; i++)
+    this->motors[0].run(RELEASE);
+    this->motors[1].run(RELEASE);
+    this->motors[2].run(RELEASE);
+    this->motors[3].run(RELEASE);
+}
+
+void Wheels::forwards(uint32_t time)
+{
+    this->motors[0].run(FORWARD);
+    this->motors[1].run(FORWARD);
+    this->motors[2].run(FORWARD);
+    this->motors[3].run(FORWARD);
+
+    if (time)
     {
-        this->motors[i].run(RELEASE);
+        delay(time);
+        this->stop();
     }
 }
 
-void Wheels::forwards()
-{
-    this->motors[0].run(FORWARD);
-    this->motors[1].run(FORWARD);
-    this->motors[2].run(FORWARD);
-    this->motors[3].run(FORWARD);
-}
-
-void Wheels::backwards()
+void Wheels::backwards(uint32_t time)
 {
     this->motors[0].run(BACKWARD);
     this->motors[1].run(BACKWARD);
     this->motors[2].run(BACKWARD);
     this->motors[3].run(BACKWARD);
+
+    if (time)
+    {
+        delay(time);
+        this->stop();
+    }
 }
 
-void Wheels::left()
+void Wheels::left(uint32_t time)
 {
     this->motors[0].run(FORWARD);
     this->motors[1].run(BACKWARD);
     this->motors[2].run(BACKWARD);
     this->motors[3].run(FORWARD);
+
+    if (time)
+    {
+        delay(time);
+        this->stop();
+    }
 }
 
-void Wheels::right()
+void Wheels::right(uint32_t time)
 {
     this->motors[0].run(BACKWARD);
     this->motors[1].run(FORWARD);
     this->motors[2].run(FORWARD);
     this->motors[3].run(BACKWARD);
+
+    if (time)
+    {
+        delay(time);
+        this->stop();
+    }
 }

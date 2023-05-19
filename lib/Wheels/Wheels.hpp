@@ -20,23 +20,31 @@ public:
 
     /**
      * @brief Moves all the wheels forwards.
+     *
+     * @param time The time in milliseconds to move the wheels for.  Defaults to 0.  If the time is 0, the wheels will move forever.
      */
-    void forwards();
+    void forwards(uint32_t time = 0);
 
     /**
      * @brief Moves all the wheels backwards.
+     *
+     * @param time The time in milliseconds to move the wheels for.  Defaults to 0.  If the time is 0, the wheels will move forever.
      */
-    void backwards();
+    void backwards(uint32_t time = 0);
 
     /**
      * @brief Moves the left wheels backwards and the right wheels forwards.
+     * 
+     * @param time The time in milliseconds to move the wheels for.  Defaults to 0.  If the time is 0, the wheels will move forever.
      */
-    void left();
+    void left(uint32_t time = 0);
 
     /**
      * @brief Moves the right wheels backwards and the left wheels forwards.
+     * 
+     * @param time The time in milliseconds to move the wheels for.  Defaults to 0.  If the time is 0, the wheels will move forever.
      */
-    void right();
+    void right(uint32_t time = 0);
 
     /**
      * @brief Stops all the wheels.
