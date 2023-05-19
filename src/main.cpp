@@ -35,7 +35,6 @@ void loop()
 {
   if (digitalRead(PUSH_BUTTON) == HIGH)
   {
-    
     scoop.move(SCOOP_DOWN, 250);
     delay(500);
 
@@ -53,8 +52,7 @@ void loop()
 
     // Turn to tube
 
-    turn(RIGHT, 69+11); //69 hahaha
-
+    turn(RIGHT, 69 + 11); // 69 hahaha
 
     // Move against wall
     wheels.forwards();
@@ -65,20 +63,18 @@ void loop()
     scoop.move(SCOOP_DEPOSIT, 500);
     scoop.move(SCOOP_DEPOSIT, 500);
     delay(2000);
-    //shake that booty
-    for (int i = 0; i < 2; i++) 
+    // shake that booty
+    for (int i = 0; i < 2; i++)
     {
-      scoop.move(SCOOP_DEPOSIT-45,WIGGLE_TIME);
-      delay(WIGGLE_TIME/3);
+      scoop.move(SCOOP_DEPOSIT - 45, WIGGLE_TIME);
+      delay(WIGGLE_TIME / 3);
       scoop.move(SCOOP_DEPOSIT);
-      delay(2400); //wait for them hoes to roll
+      delay(2400); // wait for them hoes to roll
     }
-    delay(269); //269 delay arbitrily added seems kinda cool??
-    //this is the end of shaking that booty.
+    delay(269); // 269 delay arbitrily added seems kinda cool??
+    // this is the end of shaking that booty.
     scoop.move(SCOOP_UP, 500);
-    
-    
-    
+
     wheels.backwards();
     delay(750);
     wheels.stop();
@@ -86,84 +82,77 @@ void loop()
     // Move to collect tennis balls
     turn(LEFT, 88);
     wheels.forwards();
-    delay(1100); 
+    delay(1100);
     wheels.stop();
 
-   // Move scoop and arm down to collect tennis balls
+    // Move scoop and arm down to collect tennis balls
     turn(LEFT, 50); // was 90 which was too much
-    arm.move(ARM_DOWN,2000);
+    arm.move(ARM_DOWN, 2000);
     scoop.move(SCOOP_DOWN, 500);
-    //drive forward and collect the big green balls
+    // drive forward and collect the big green balls
     wheels.forwards();
     delay(1550);
-    
 
-    
     wheels.stop();
     delay(2000);
-    //move away from wall slightly
+    // move away from wall slightly
     wheels.backwards();
     delay(100);
     wheels.stop();
 
-    //rotate left and right to knock last tennis ball away
+    // rotate left and right to knock last tennis ball away
     scoop.move(103, 150);
-    turn(LEFT,70);
+    turn(LEFT, 70);
     delay(333);
-    turn(RIGHT,30+70);
+    turn(RIGHT, 30 + 70);
     delay(333);
-    turn(LEFT,30);
+    turn(LEFT, 30);
     delay(333);
-    scoop.move(SCOOP_UP,1000);
-    arm.move(ARM_UP+5,1000);
-    
+    scoop.move(SCOOP_UP, 1000);
+    arm.move(ARM_UP + 5, 1000);
 
-    
     // Move backwards &  turn around
     wheels.backwards();
     delay(400);
     wheels.stop();
-    //start turning the robot around 180 degrees to get into position for tennis deposit:
-    turn(RIGHT,  148); 
+    // start turning the robot around 180 degrees to get into position for tennis deposit:
+    turn(RIGHT, 148);
 
-    wheels.backwards(); 
+    wheels.backwards();
     delay(950);
     wheels.stop();
-    //ideally we are now facing the tube and flush against the cardboard
+    // ideally we are now facing the tube and flush against the cardboard
 
-    //now deposit the big green balls
-    scoop.move(SCOOP_TENNIS_DEPOSIT,1000);
+    // now deposit the big green balls
+    scoop.move(SCOOP_TENNIS_DEPOSIT, 1000);
 
-    for (int i = 80; i < 161; i=i+5)
+    for (int i = 80; i < 161; i = i + 5)
     {
-      arm.move(i,500);
+      arm.move(i, 500);
       delay(300);
     }
-    delay(250); //probably not necassary
-    scoop.move(84,2000); //here is where they ought to drop out?
+    delay(250);           // probably not necassary
+    scoop.move(84, 2000); // here is where they ought to drop out?
     delay(4000);
 
-
-
-    //return to start hopefully:
-    arm.move(ARM_DOWN,2000);
+    // return to start hopefully:
+    arm.move(ARM_DOWN, 2000);
     delay(2000);
     wheels.forwards();
     delay(600);
     wheels.stop();
-    turn(RIGHT,75); //75 to clear the zone of where a tennis ball may potentially be lying
+    turn(RIGHT, 75); // 75 to clear the zone of where a tennis ball may potentially be lying
     wheels.forwards();
     delay(700);
     wheels.stop();
-    turn(RIGHT,35); 
+    turn(RIGHT, 35);
     wheels.forwards();
     delay(1550);
     wheels.stop();
     delay(300);
-    arm.move(ARM_DOWN,2000);
+    arm.move(ARM_DOWN, 2000);
     scoop.move(SCOOP_START);
-    //profit??
-
+    // profit??
   }
   else
   {
@@ -225,7 +214,7 @@ void turn(Direction direction, int degrees)
   // Stop when the azimuth is within the range
   while (!check_range(&range, compass.getAzimuth()))
   {
-     compass.read();
+    compass.read();
   }
 
   wheels.stop();
