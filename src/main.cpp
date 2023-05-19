@@ -35,6 +35,10 @@ void loop()
 {
   if (digitalRead(PUSH_BUTTON) == HIGH)
   {
+    /**
+     * Squash ball collection
+     */
+
     scoop.move(SCOOP_DOWN, 250);
     delay(500);
 
@@ -64,13 +68,18 @@ void loop()
       scoop.move(SCOOP_DEPOSIT - 45, WIGGLE_TIME);
       delay(WIGGLE_TIME / 3);
       scoop.move(SCOOP_DEPOSIT);
-      delay(2400); // wait for them hoes to roll
+      // Let the balls roll out
+      delay(2400);
     }
     delay(269); // 269 delay arbitrily added seems kinda cool??
     scoop.move(SCOOP_UP, 500);
 
     // Move backwards from tube
     wheels.backwards(750);
+
+    /**
+     * Tennis ball collection
+     */
 
     // Move to collect tennis balls
     turn(LEFT, 88);
@@ -117,19 +126,24 @@ void loop()
     scoop.move(84, 2000); // here is where they ought to drop out?
     delay(4000);
 
-    // return to start hopefully:
+    /**
+     * Return to start
+     */
+
     arm.move(ARM_DOWN, 2000);
     delay(2000);
     wheels.forwards(600);
-    turn(RIGHT, 75); // 75 to clear the zone of where a tennis ball may potentially be lying
+    // 75 to clear the zone of where a tennis ball may potentially be lying
+    turn(RIGHT, 75); 
     wheels.forwards(700);
     turn(RIGHT, 35);
     wheels.forwards(1550);
-    delay(300);
+
+    // Reset scoop & arm position
     arm.move(ARM_DOWN, 2000);
     scoop.move(SCOOP_START);
 
-    // profit??
+    // profit ???
   }
   else
   {
