@@ -187,7 +187,6 @@ void turn(Direction direction, int32_t degrees)
   compass.read();
   int32_t start = compass.getAzimuth();
 
-  // For positive degrees: turn left, for negative degrees: turn left
   if (direction == LEFT)
     wheels.left();
   else
