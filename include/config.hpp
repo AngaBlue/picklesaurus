@@ -3,13 +3,14 @@
 #define LOGGING
 
 #define SCOOP_START 0
-#define SCOOP_UP 80
-#define SCOOP_DOWN 114
-#define SCOOP_DEPOSIT 180
-#define SCOOP_TENNIS_DEPOSIT 120
+#define SCOOP_UP 90
+#define SCOOP_DOWN 105
+#define SCOOP_DEPOSIT 175
+#define SCOOP_DEPOSIT_TENNIS 117
 
-#define ARM_UP 65
+#define ARM_UP 70
 #define ARM_DOWN 0
+#define ARM_DEPOSIT_TENNIS 160
 #define WIGGLE_TIME 300
 #define SPEED 255
 

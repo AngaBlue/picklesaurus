@@ -43,24 +43,24 @@ void loop()
 
     // Collect squash balls
     wheels.forwards();
-    delay(1250);
+    delay(1600);
     scoop.move(SCOOP_UP, 250);
     wheels.stop();
-    arm.move(ARM_UP, 2000);
+    arm.move(ARM_UP, 2000); 
 
     // Move backwards
     wheels.backwards(1069);
 
     // Turn to the tube
-    turn(RIGHT, 80);
+    turn(RIGHT, 65);
 
     // Move against wall
-    wheels.forwards(1800);
+    wheels.forwards(2200);
 
-    // Drop balls
-    scoop.move(SCOOP_DEPOSIT, 500);
-    scoop.move(SCOOP_DEPOSIT, 500);
-    delay(2000);
+    // Drop balls & wait for them to fall
+    scoop.move(SCOOP_DEPOSIT-55); 
+    delay(250);
+
     // Shake the tube
     for (uint8_t i = 0; i < 2; ++i)
     {
@@ -70,7 +70,7 @@ void loop()
       // Let the balls roll out
       delay(2400);
     }
-    delay(269); // 269 delay arbitrily added seems kinda cool??
+
     scoop.move(SCOOP_UP, 500);
 
     // Move backwards from tube
@@ -81,48 +81,45 @@ void loop()
      */
 
     // Move to collect tennis balls
-    turn(LEFT, 88);
-    wheels.forwards(1100);
+    turn(LEFT, 66);
+    wheels.forwards(1300);
 
     // Move scoop and arm down to collect tennis balls
-    turn(LEFT, 50); // was 90 which was too much
-    arm.move(ARM_DOWN, 2000);
+    turn(LEFT, 57); // was 90 which was too much
+    for (int i = ARM_UP; i > ARM_DOWN; i -= 2)
+    {
+      arm.move(i, 200);
+      delay(100);
+    }
     scoop.move(SCOOP_DOWN, 500);
     // drive forward and collect the big green balls
-    wheels.forwards(1550);
+    wheels.forwards(1530);
     delay(2000);
     // move away from wall slightly
     wheels.backwards(100);
 
     // rotate left and right to knock last tennis ball away
     scoop.move(103, 150);
-    turn(LEFT, 70);
-    delay(333);
-    turn(RIGHT, 30 + 70);
-    delay(333);
-    turn(LEFT, 30);
-    delay(333);
     scoop.move(SCOOP_UP, 1000);
     arm.move(ARM_UP + 5, 1000);
 
     // Move backwards &  turn around
     wheels.backwards(400);
     // start turning the robot around 180 degrees to get into position for tennis deposit:
-    turn(RIGHT, 148);
+    turn(RIGHT, 130);
 
-    wheels.backwards(950);
+    wheels.backwards(967);
     // ideally we are now facing the tube and flush against the cardboard
 
     // now deposit the big green balls
-    scoop.move(SCOOP_TENNIS_DEPOSIT, 1000);
+    scoop.move(SCOOP_DEPOSIT_TENNIS, 1000);
 
-    for (uint32_t i = 80; i <= 160; i += 5)
+    for (uint32_t i = 80; i <= ARM_DEPOSIT_TENNIS; i += 2)
     {
-      arm.move(i, 500);
-      delay(300);
+      arm.move(i, 200);
+      delay(100);
     }
-    delay(250);           // probably not necassary
-    scoop.move(84, 2000); // here is where they ought to drop out?
+    scoop.move(65, 2000); // here is where they ought to drop out?
     delay(4000);
 
     /**
@@ -130,13 +127,12 @@ void loop()
      */
 
     arm.move(ARM_DOWN, 2000);
-    delay(2000);
     wheels.forwards(600);
     // 75 to clear the zone of where a tennis ball may potentially be lying
-    turn(RIGHT, 75); 
+    turn(RIGHT, 50); 
     wheels.forwards(700);
     turn(RIGHT, 35);
-    wheels.forwards(1550);
+    wheels.forwards(1000);
 
     // Reset scoop & arm position
     arm.move(ARM_DOWN, 2000);
