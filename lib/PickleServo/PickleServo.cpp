@@ -11,6 +11,8 @@ void PickleServo::attach(uint8_t pin, uint8_t start)
 void PickleServo::move(int32_t angle, uint32_t time)
 {
   int32_t start = this->read();
+
+  // The servo is already at the angle
   if (start == angle)
     return;
 
@@ -28,6 +30,7 @@ void PickleServo::move(int32_t angle, uint32_t time)
       delayMicroseconds(delayTime);
     }
   }
+  
   // Ensure servo reaches the finishing angle
   this->write(angle);
 }
