@@ -1,5 +1,5 @@
 # Picklesaurus - 2023 Weir Warman Competition Entry
-Welcome to the Picklesaurus code repository bootstrapped with PlatformIO.
+Welcome to the Picklesaurus code repository for entry into the 2023 Wier Warman competition.
 
 ## Structure
 This project uses PlatformIO's default project structure.
@@ -8,7 +8,6 @@ This project uses PlatformIO's default project structure.
   - `main.cpp`: the entry point of the project.  Contains logic that brings together all sensors, timing and actions.
 - `lib/`: libraries created for this project.  These are abstractions that provide a declarative API for performing actions involving multiple inputs and outputs.
   - `PickleServo/`: a class for controlling the movement of a servo motor smoothly.
-  - `QMC5883LCompass/`: a class for reading the direction the robot is facing using the QMC5883L compass.
   - `Wheels/`: a class for controlling the direction the robot moves using the wheels.
 
 ## Configuration
