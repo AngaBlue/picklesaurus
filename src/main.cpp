@@ -96,7 +96,7 @@ void loop()
     wheels.forwards(1800);
     delay(1000);
     // move away from wall slightly
-    wheels.backwards(150);
+    wheels.backwards(250);
 
     // Move scoop & arm up
     scoop.move(103, 150);
