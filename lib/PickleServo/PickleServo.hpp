@@ -2,8 +2,7 @@
 #include <Servo.h>
 
 /**
- * @class PickleServo
- * @brief A simple interface for opening and closing the scoop declaratively.
+ * @brief A simple interface for moving the scoop smoothly & declaratively.
  */
 class PickleServo : private Servo
 {

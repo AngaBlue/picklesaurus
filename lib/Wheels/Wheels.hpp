@@ -1,7 +1,7 @@
 #include <Arduino.h>
 #include <AFMotor.h>
 
-struct multipliers_t
+struct
 {
     float front_left;
     float front_right;
@@ -9,6 +9,15 @@ struct multipliers_t
     float back_right;
 } typedef multipliers_t;
 
+/**
+ * @brief A simple interface for moving all wheels together & declaratively.
+ * 
+ * @note The wheels are numbered as follows:
+ * 0: Front left
+ * 1: Front right
+ * 2: Back left
+ * 3: Back right
+ */
 class Wheels
 {
 private:
