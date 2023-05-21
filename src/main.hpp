@@ -3,7 +3,6 @@
 #include <PickleServo.hpp>
 #include <Wheels.hpp>
 #include <QMC5883LCompass.h>
-#include <Ultrasonic.h>
 
 struct
 {
