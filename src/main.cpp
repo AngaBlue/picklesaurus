@@ -4,6 +4,7 @@ Wheels wheels;
 PickleServo scoop;
 PickleServo arm;
 QMC5883LCompass compass;
+Ultrasonic ultrasonic(ULTRASONIC_TRIGGER, ULTRASONIC_ECHO);
 
 void setup()
 {
@@ -46,10 +47,20 @@ void loop()
     delay(1600);
     scoop.move(SCOOP_UP, 250);
     wheels.stop();
-    arm.move(ARM_UP, 2000); 
+    arm.move(ARM_UP, 2000);
 
     // Move backwards
-    wheels.backwards(1050);
+    wheels.backwards();
+
+    // Move until the ultrasonic sensor detects the wall
+    delay(500);
+    uint32_t distance = ultrasonic.read();
+    while (distance == 0 || distance > 85)
+    {
+      distance = ultrasonic.read();
+      delay(10);  
+    }
+    wheels.stop();
 
     // Turn to the tube
     turn(RIGHT, 65);
@@ -58,7 +69,7 @@ void loop()
     wheels.forwards(2200);
 
     // Drop balls & wait for them to fall
-    scoop.move(SCOOP_DEPOSIT-55); 
+    scoop.move(SCOOP_DEPOSIT - 55);
     delay(250);
 
     // Shake the tube
@@ -128,7 +139,7 @@ void loop()
 
     arm.move(ARM_DOWN, 2000);
     // 75 to clear the zone of where a tennis ball may potentially be lying
-    turn(RIGHT, 50); 
+    turn(RIGHT, 50);
     wheels.forwards(1250);
     turn(RIGHT, 35);
     wheels.forwards(750);
@@ -142,13 +153,13 @@ void loop()
   else
   {
 #ifdef LOGGING
-    // Read & print azimuth
-    compass.read();
-    int32_t azimuth = compass.getAzimuth();
+    // Read & print distance
+    int32_t distance = ultrasonic.read();
 
     char output[32];
-    sprintf(output, "Azimuth: %3ld", azimuth);
+    sprintf(output, "Distance: %3ld", distance);
     Serial.println(output);
+    delay(10);
 #endif
   }
 }
