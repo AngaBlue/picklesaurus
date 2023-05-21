@@ -46,7 +46,7 @@ void loop()
     delay(1600);
     scoop.move(SCOOP_UP, 250);
     wheels.stop();
-    arm.move(ARM_UP, 2000); 
+    arm.move(ARM_UP, 2000);
 
     // Move backwards
     wheels.backwards(1100);
@@ -58,7 +58,7 @@ void loop()
     wheels.forwards(2200);
 
     // Drop balls & wait for them to fall
-    scoop.move(SCOOP_DEPOSIT-55); 
+    scoop.move(SCOOP_DEPOSIT - 55);
     delay(250);
 
     // Shake the tube
@@ -129,7 +129,7 @@ void loop()
     arm.move(ARM_DOWN, 2000);
     // 75 to clear the zone of where a tennis ball may potentially be lying
     wheels.forwards(250);
-    turn(RIGHT, 10); 
+    turn(RIGHT, 10);
     wheels.forwards(750);
     turn(RIGHT, 75);
     wheels.forwards(1800);
