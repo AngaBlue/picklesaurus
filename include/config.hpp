@@ -2,11 +2,11 @@
 
 #define LOGGING
 
-#define SCOOP_START 0
+#define SCOOP_START 5
 #define SCOOP_UP 90
 #define SCOOP_DOWN 105
 #define SCOOP_DEPOSIT 175
-#define SCOOP_DEPOSIT_TENNIS 117
+#define SCOOP_DEPOSIT_TENNIS 120
 
 #define ARM_UP 70
 #define ARM_DOWN 0
