@@ -1,6 +1,4 @@
 #include "PickleServo.hpp"
-#include <Arduino.h>
-#include <Servo.h>
 
 void PickleServo::attach(uint8_t pin, uint8_t start)
 {
