@@ -15,7 +15,7 @@ void setup()
   /**
    * Initialise pins
    */
-  pinMode(PUSH_BUTTON, INPUT_PULLUP);
+  pinMode(PUSH_BUTTON, INPUT);
 
   /**
    * Initialise components
@@ -32,7 +32,7 @@ void setup()
 
 void loop()
 {
-  if (digitalRead(PUSH_BUTTON) == LOW)
+  if (digitalRead(PUSH_BUTTON) == HIGH)
   {
     /**
      * Squash ball collection
