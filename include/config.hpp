@@ -6,9 +6,9 @@
 // Scoop servo positions
 #define SCOOP_START 5
 #define SCOOP_UP 90
-#define SCOOP_DOWN 105
-#define SCOOP_DEPOSIT 175
-#define SCOOP_DEPOSIT_TENNIS 120
+#define SCOOP_DOWN 108
+#define SCOOP_DEPOSIT 178
+#define SCOOP_DEPOSIT_TENNIS 115
 
 // How quickly to wiggle the scoop when depositing squash balls
 #define WIGGLE_TIME 300

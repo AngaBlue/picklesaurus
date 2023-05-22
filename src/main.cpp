@@ -15,7 +15,7 @@ void setup()
   /**
    * Initialise pins
    */
-  pinMode(PUSH_BUTTON, INPUT);
+  pinMode(PUSH_BUTTON, INPUT_PULLUP);
 
   /**
    * Initialise components
@@ -32,7 +32,7 @@ void setup()
 
 void loop()
 {
-  if (digitalRead(PUSH_BUTTON) == HIGH)
+  if (digitalRead(PUSH_BUTTON) == LOW)
   {
     /**
      * Squash ball collection
@@ -50,7 +50,7 @@ void loop()
     arm.move(ARM_UP, 1000);
 
     // Move backwards
-    wheels.backwards(1100);
+    wheels.backwards(1190);
 
     // Turn to the tube
     turn(RIGHT, 65);
@@ -83,7 +83,7 @@ void loop()
 
     // Move to collect tennis balls
     turn(LEFT, 62);
-    wheels.forwards(1300);
+    wheels.forwards(1200);
 
     // Move scoop and arm down to collect tennis balls
     turn(LEFT, 57); // was 90 which was too much
@@ -109,7 +109,7 @@ void loop()
     // Move backwards &  turn around
     wheels.backwards(400);
     // start turning the robot around 180 degrees to get into position for tennis deposit:
-    turn(RIGHT, 132);
+    turn(RIGHT, 140);
 
     wheels.backwards(967);
     // ideally we are now facing the tube and flush against the cardboard
