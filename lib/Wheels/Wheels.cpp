@@ -21,7 +21,7 @@ void Wheels::stop()
     this->motors[3].run(RELEASE);
 }
 
-void Wheels::forwards(uint32_t time)
+void Wheels::forwards(unsigned long time)
 {
     this->motors[0].run(FORWARD);
     this->motors[1].run(FORWARD);
@@ -35,7 +35,7 @@ void Wheels::forwards(uint32_t time)
     }
 }
 
-void Wheels::backwards(uint32_t time)
+void Wheels::backwards(unsigned long time)
 {
     this->motors[0].run(BACKWARD);
     this->motors[1].run(BACKWARD);
@@ -49,7 +49,7 @@ void Wheels::backwards(uint32_t time)
     }
 }
 
-void Wheels::left(uint32_t time)
+void Wheels::left(unsigned long time)
 {
     this->motors[0].run(FORWARD);
     this->motors[1].run(BACKWARD);
@@ -63,7 +63,7 @@ void Wheels::left(uint32_t time)
     }
 }
 
-void Wheels::right(uint32_t time)
+void Wheels::right(unsigned long time)
 {
     this->motors[0].run(BACKWARD);
     this->motors[1].run(FORWARD);

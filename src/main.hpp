@@ -6,8 +6,8 @@
 
 struct
 {
-  int32_t min;
-  int32_t max;
+  int min;
+  int max;
 } typedef range_t;
 
 enum
@@ -30,7 +30,7 @@ void fix_range(range_t *range);
  * @param azimuth The azimuth to check.
  * @return Whether the azimuth is within the range.
  */
-bool check_range(range_t *range, int32_t azimuth);
+bool check_range(range_t *range, int azimuth);
 
 /**
  * @brief Turn the robot in a direction by a number of degrees.
@@ -38,4 +38,4 @@ bool check_range(range_t *range, int32_t azimuth);
  * @param direction The direction to turn in, either LEFT or RIGHT.
  * @param degrees The number of degrees to turn by.
  */
-void turn(Direction direction, int32_t degrees);
+void turn(Direction direction, int degrees);

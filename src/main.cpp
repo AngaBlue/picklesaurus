@@ -114,7 +114,7 @@ void loop()
     // now deposit the big green balls
     scoop.move(SCOOP_DEPOSIT_TENNIS, 1000);
 
-    for (uint32_t i = 80; i <= ARM_DEPOSIT_TENNIS; i += 2)
+    for (int i = 80; i <= ARM_DEPOSIT_TENNIS; i += 2)
     {
       arm.move(i, 200);
       delay(100);
@@ -145,10 +145,10 @@ void loop()
 #ifdef LOGGING
     // Read & print azimuth
     compass.read();
-    int32_t azimuth = compass.getAzimuth();
+    int azimuth = compass.getAzimuth();
 
     char output[32];
-    sprintf(output, "Azimuth: %3ld", azimuth);
+    sprintf(output, "Azimuth: %3d", azimuth);
     Serial.println(output);
 #endif
   }
@@ -169,7 +169,7 @@ void fix_range(range_t *range)
     range->max -= 360;
 }
 
-bool check_range(range_t *range, int32_t azimuth)
+bool check_range(range_t *range, int azimuth)
 {
   if (range->min < range->max)
     return azimuth >= range->min && azimuth <= range->max;
@@ -177,11 +177,11 @@ bool check_range(range_t *range, int32_t azimuth)
     return azimuth >= range->min || azimuth <= range->max;
 }
 
-void turn(Direction direction, int32_t degrees)
+void turn(Direction direction, int degrees)
 {
   // Get the starting azimuth and the sign of the degrees
   compass.read();
-  int32_t start = compass.getAzimuth();
+  int start = compass.getAzimuth();
 
   if (direction == LEFT)
     wheels.left();
