@@ -114,10 +114,10 @@ void loop()
     // now deposit the big green balls
     scoop.move(SCOOP_DEPOSIT_TENNIS, 1000);
 
-    for (int i = 80; i <= ARM_DEPOSIT_TENNIS; i += 2)
+    for (int i = 80; i <= ARM_DEPOSIT_TENNIS; i += 5)
     {
-      arm.move(i, 200);
-      delay(100);
+      arm.move(i, 500);
+      delay(250);
     }
     scoop.move(65, 2000); // here is where they ought to drop out?
     delay(4000);
