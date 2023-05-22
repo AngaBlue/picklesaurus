@@ -38,15 +38,16 @@ void loop()
      * Squash ball collection
      */
 
-    scoop.move(SCOOP_DOWN, 250);
+    scoop.move(SCOOP_DOWN, 100);
     delay(1000);
 
     // Collect squash balls
     wheels.forwards();
-    delay(1600);
-    scoop.move(SCOOP_UP, 250);
+    delay(1500);
+    scoop.move(SCOOP_UP);
+    delay(100);
     wheels.stop();
-    arm.move(ARM_UP, 2000);
+    arm.move(ARM_UP, 1000);
 
     // Move backwards
     wheels.backwards(1100);
@@ -64,8 +65,8 @@ void loop()
     // Shake the tube
     for (uint8_t i = 0; i < 2; ++i)
     {
-      scoop.move(SCOOP_DEPOSIT - 45, WIGGLE_TIME);
-      delay(WIGGLE_TIME / 3);
+      scoop.move(SCOOP_DEPOSIT - 45);
+      delay(WIGGLE_TIME);
       scoop.move(SCOOP_DEPOSIT);
       // Let the balls roll out
       delay(2400);
@@ -99,8 +100,10 @@ void loop()
     wheels.backwards(250);
 
     // Move scoop & arm up
-    scoop.move(103, 150);
-    scoop.move(SCOOP_UP, 1000);
+    scoop.move(103);
+    delay(250);
+    scoop.move(SCOOP_UP);
+    delay(300);
     arm.move(ARM_UP + 5, 1000);
 
     // Move backwards &  turn around
@@ -119,8 +122,10 @@ void loop()
       arm.move(i, 500);
       delay(250);
     }
+
+    delay(1000);
     scoop.move(65, 2000); // here is where they ought to drop out?
-    delay(4000);
+    delay(2700);
 
     /**
      * Return to start
@@ -136,7 +141,7 @@ void loop()
 
     // Reset scoop & arm position
     arm.move(ARM_DOWN, 2000);
-    scoop.move(SCOOP_START);
+    scoop.move(SCOOP_START+1,1000);
 
     // profit ???
   }
