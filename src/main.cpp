@@ -50,7 +50,7 @@ void loop()
     arm.move(ARM_UP, 1000);
 
     // Move backwards
-    wheels.backwards(1190);
+    wheels.backwards(950);
 
     // Turn to the tube
     turn(RIGHT, 65);
@@ -83,10 +83,10 @@ void loop()
 
     // Move to collect tennis balls
     turn(LEFT, 62);
-    wheels.forwards(1200);
+    wheels.forwards(950);
 
     // Move scoop and arm down to collect tennis balls
-    turn(LEFT, 57); // was 90 which was too much
+    turn(LEFT, 62); // was 90 which was too much
     for (int i = ARM_UP; i > ARM_DOWN; i -= 2)
     {
       arm.move(i, 200);
@@ -109,7 +109,7 @@ void loop()
     // Move backwards &  turn around
     wheels.backwards(400);
     // start turning the robot around 180 degrees to get into position for tennis deposit:
-    turn(RIGHT, 140);
+    turn(RIGHT, 135);
 
     wheels.backwards(967);
     // ideally we are now facing the tube and flush against the cardboard
@@ -137,7 +137,7 @@ void loop()
     turn(RIGHT, 10);
     wheels.forwards(750);
     turn(RIGHT, 75);
-    wheels.forwards(1800);
+    wheels.forwards(2200);
 
     // Reset scoop & arm position
     arm.move(ARM_DOWN, 2000);

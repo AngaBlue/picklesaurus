@@ -16,7 +16,7 @@
 // Arm servo positions 
 #define ARM_UP 70
 #define ARM_DOWN 0
-#define ARM_DEPOSIT_TENNIS 160
+#define ARM_DEPOSIT_TENNIS 165
 
 // Wheel speeds
 #define SPEED 255
