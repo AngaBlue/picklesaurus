@@ -12,3 +12,6 @@ This project uses PlatformIO's default project structure.
 
 ## Configuration
 Pins and other settings can be configured in `include/pins.hpp` and `include/config.hpp` respectively.
+
+## Picklesaurus
+Picklesauras, the name given to our robot came 1st runner-up in the 2023 Weir Warman Monash Malaysia campus competition.  It is capable of completing the entire course in roughly 50 seconds; collecting & depositing 3 squash balls and 3 tennis balls into their respective tubes.
